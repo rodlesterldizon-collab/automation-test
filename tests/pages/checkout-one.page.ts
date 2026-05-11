@@ -2,7 +2,7 @@ import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from './base.page';
 import { CheckoutTwoPage } from './checkout-two.page';
 
-export class CheckoutOnePage extends BasePage {
+export class CheckoutOnePage extends BasePage { 
   readonly firstNameInput: Locator;
   readonly lastNameInput: Locator;
   readonly postalCodeInput: Locator;
