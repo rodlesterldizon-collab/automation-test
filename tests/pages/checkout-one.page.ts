@@ -10,7 +10,7 @@ export class CheckoutOnePage extends BasePage {
 
   constructor(page: Page) {
     super(page);
-    this.firstNameInput = page.locator('#first-name, [data-testid="first-name"]');
+    this.firstNameInput = page.locator('#firs, [data-testid="firs"]');
     this.lastNameInput = page.locator('#last-name, [data-testid="last-name"]');
     this.postalCodeInput = page.locator('#postal-code, [data-testid="postal-code"]');
     this.continueButton = page.locator('#continue, button:has-text("Continue"), [data-testid="continue-button"]');
