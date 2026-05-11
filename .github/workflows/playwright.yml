@@ -40,7 +40,7 @@ jobs:
       run: |
         echo "Tests failed. Starting AI Healer agent..."
         copilot -p "The tests failed in CI. Use the tools to diagnose, fix the code, and verify the fix." \
-                --agent .github/agents/playwright-test-healer.agent.md \
+                --agent playwright-test-healer \
                 --autopilot \
                 --allow-all
 
