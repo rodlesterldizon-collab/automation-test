@@ -1,12 +1,23 @@
-# automation-test
+# 🧪 Sauce Labs E2E Automation Framework
 
-> 🧪 **Sauce Labs Automation Demo**
-> This repository serves as an automated end-to-end testing demonstration for the Sauce Labs application (Sauce Demo), created and maintained by **Rod Dizon**.
+[![Playwright Tests](https://github.com/rodlesterldizon-collab/automation-test/actions/workflows/playwright.yml/badge.svg)](https://github.com/rodlesterldizon-collab/automation-test/actions/workflows/playwright.yml)
+
+A professional-grade, enterprise-ready end-to-end testing suite for the [Sauce Demo](https://www.saucedemo.com/) e-commerce platform. Created and maintained by **Rod Lester Dizon**.
 
 ---
 
-## 📌 Project Overview
-This project showcases a highly optimized, modern automation framework utilizing **Playwright** and **TypeScript**. Built with scalability in mind, it implements the **Page Object Model (POM)** architectural pattern and leverages free CI/CD cloud containerization to achieve lightning-fast test execution.
+## 🎯 The "Why"
+The goal of this project is to provide a robust, scalable, and maintainable automation solution that mimics real-world user behavior. It validates critical business paths—from authentication to complex checkout funnels—ensuring UI stability and data integrity across various user personas and browser engines.
+
+## 🛠️ Tech Stack & Patterns
+- **Framework:** [Playwright](https://playwright.dev/) (Chromium, Firefox, WebKit)
+- **Language:** TypeScript
+- **Architecture:** Page Object Model (POM)
+- **CI/CD:** GitHub Actions with Dockerized Runners
+- **Reporting:** Playwright HTML Reports with Trace Viewer & Screenshot artifacts
+- **Logic:** Centralized Configuration & Visual Bug Detection Utilities
+
+---
 
 ### 🎯 Advanced Demo Scope & Coverage
 To demonstrate core user flows and framework capabilities, this suite focuses on two critical application pathways:
@@ -20,15 +31,17 @@ To demonstrate core user flows and framework capabilities, this suite focuses on
 2. **End-to-End Checkout Flow**
    * Simulates the complete customer purchasing journey: adding items to the cart, navigating the cart inventory, filling out shipping information, and verifying financial totals.
    * Ensures data integrity and UI stability throughout the critical checkout funnel.
-   * *Specification Details:* See [specs/checkout-flow.md](specs/checkout-flow.md).
+   * *Specification Details:* See [specs/checkout-flow.md](/specs/checkout-flow.md).
 
 ---
 
+## 🚀 Quick Start
 
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v20 or higher)
+- npm
 
-Playwright E2E automation testing framework for Sauce Demo with optimized GitHub Actions CI/CD using Docker containers.
-
-## Quick Start
+### Installation
 
 ```bash
 # Install dependencies
@@ -61,7 +74,7 @@ git checkout -b add-login-tests
 
 **Stage files:**
 ```bash
-git add .                              # Stage all changes
+git add .                             # Stage all changes
 git add path/to/specific/file.ts      # Stage specific file
 git add .github/workflows/             # Stage entire directory
 ```

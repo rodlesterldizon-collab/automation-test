@@ -1,7 +1,7 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from './base.page';
 import { InventoryPage } from './inventory.page';
-import { BASE_URL, SELECTORS } from '../helpers/test-config';
+import { SELECTORS } from '../helpers/test-config';
 
 export class LoginPage extends BasePage {
   readonly usernameInput: Locator;
@@ -18,8 +18,9 @@ export class LoginPage extends BasePage {
   }
 
   async goto() {
-    await this.page.goto(BASE_URL);
-    await expect(this.page).toHaveURL(BASE_URL);
+    // Navigation uses baseURL defined in playwright.config.ts
+    await this.page.goto('/');
+    await expect(this.page).toHaveURL(/.*saucedemo.com/);
   }
 
   async login(username: string, password: string) {

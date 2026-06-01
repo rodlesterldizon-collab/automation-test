@@ -20,7 +20,7 @@
 
 import { test, expect } from '@playwright/test';
 import { LoginPage } from './pages/login.page';
-import { TEST_USERS, ACCEPTED_USERS, VALID_PASSWORD, getLoginError, BASE_URL } from './helpers/test-config';
+import { TEST_USERS, VALID_PASSWORD, getLoginError, BASE_URL } from './helpers/test-config';
 import { compareVisuals } from './helpers/utils';
 
 test.describe('Sauce Demo Login Flow', () => {
