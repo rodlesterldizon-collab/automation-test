@@ -1,6 +1,7 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from './base.page';
 import { InventoryPage } from './inventory.page';
+import { BASE_URL } from '../helpers/test-config';
 
 export class LoginPage extends BasePage {
   readonly usernameInput: Locator;
@@ -15,8 +16,8 @@ export class LoginPage extends BasePage {
   }
 
   async goto() {
-    await this.page.goto('https://www.saucedemo.com/');
-    await expect(this.page).toHaveURL('https://www.saucedemo.com/');
+    await this.page.goto(BASE_URL);
+    await expect(this.page).toHaveURL(BASE_URL);
   }
 
   async login(username: string, password: string) {

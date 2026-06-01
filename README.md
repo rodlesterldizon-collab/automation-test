@@ -1,3 +1,28 @@
+# automation-test
+
+> 🧪 **Sauce Labs Automation Demo**
+> This repository serves as an automated end-to-end testing demonstration for the Sauce Labs application (Sauce Demo), created and maintained by **Rod Dizon**.
+
+---
+
+## 📌 Project Overview
+This project showcases a highly optimized, modern automation framework utilizing **Playwright** and **TypeScript**. Built with scalability in mind, it implements the **Page Object Model (POM)** architectural pattern and leverages free CI/CD cloud containerization to achieve lightning-fast test execution.
+
+### 🎯 Demo Scope & Coverage
+To demonstrate core user flows and framework capabilities, this suite focuses on two critical application pathways:
+
+1. **Login Flow Verification**
+   * Validates successful authentication across various user profiles (`standard_user`, `problem_user`, etc.).
+   * Confirms error-handling states, performance tolerances, and session management.
+   * *Specification Details:* See [specs/login.md](specs/login.md).
+
+2. **End-to-End Checkout Flow**
+   * Simulates the complete customer purchasing journey: adding items to the cart, navigating the cart inventory, filling out shipping information, and verifying financial totals.
+   * Ensures data integrity and UI stability throughout the critical checkout funnel.
+   * *Specification Details:* See [specs/checkout-flow.md](specs/checkout-flow.md).
+
+---
+
 
 # automation-test
 
