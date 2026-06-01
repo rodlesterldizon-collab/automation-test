@@ -21,6 +21,111 @@ npx playwright test --debug
 
 ---
 
+## Git Workflow Reference
+
+Quick command reference for branching, committing, and merging:
+
+### Create a New Branch
+```bash
+git checkout -b branch-name
+# Example:
+git checkout -b add-login-tests
+```
+
+### Make Changes & Commit
+
+**Stage files:**
+```bash
+git add .                              # Stage all changes
+git add path/to/specific/file.ts      # Stage specific file
+git add .github/workflows/             # Stage entire directory
+```
+
+**Commit changes:**
+```bash
+git commit -m "descriptive message"
+# Example:
+git commit -m "test: add login flow tests"
+```
+
+### Push Branch to GitHub
+```bash
+git push origin branch-name
+# Example:
+git push origin add-login-tests
+```
+
+### Merge Branch to Main
+
+**Step 1: Switch to main**
+```bash
+git checkout main
+```
+
+**Step 2: Merge your branch**
+```bash
+git merge branch-name
+# Example:
+git merge add-login-tests
+```
+
+**Step 3: Push to GitHub**
+```bash
+git push origin main
+```
+
+### Complete Workflow Example
+```bash
+# 1. Create and switch to new branch
+git checkout -b test-playwright-docker
+
+# 2. Make changes to files...
+
+# 3. Stage changes
+git add .github/workflows/
+
+# 4. Commit with descriptive message
+git commit -m "fix: update playwright docker image to v1.59.1"
+
+# 5. Push branch to GitHub
+git push origin test-playwright-docker
+
+# 6. After testing/PR approval, switch to main
+git checkout main
+
+# 7. Merge the branch
+git merge test-playwright-docker
+
+# 8. Push merged changes to main
+git push origin main
+```
+
+### Useful Git Commands
+```bash
+# Check current branch
+git branch
+
+# List all branches (local and remote)
+git branch -a
+
+# See your uncommitted changes
+git status
+
+# See detailed diff of changes
+git diff
+
+# Delete a branch locally
+git branch -d branch-name
+
+# Delete a branch on GitHub
+git push origin --delete branch-name
+
+# View commit history
+git log --oneline
+```
+
+---
+
 ## GitHub Actions CI/CD Optimization
 
 ### 🐋 Docker Container Optimization (Fastest - ~1 minute)
