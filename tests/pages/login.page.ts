@@ -1,18 +1,20 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from './base.page';
 import { InventoryPage } from './inventory.page';
-import { BASE_URL } from '../helpers/test-config';
+import { BASE_URL, SELECTORS } from '../helpers/test-config';
 
 export class LoginPage extends BasePage {
   readonly usernameInput: Locator;
   readonly passwordInput: Locator;
   readonly loginButton: Locator;
+  readonly errorIcons: Locator;
 
   constructor(page: Page) {
     super(page);
     this.usernameInput = page.locator('#user-name, [data-testid="username"]');
     this.passwordInput = page.locator('#password, [data-testid="password"]');
     this.loginButton = page.locator('#login-button, button:has-text("Login")');
+    this.errorIcons = page.locator(SELECTORS.errorIcon);
   }
 
   async goto() {

@@ -8,13 +8,14 @@
 ## 📌 Project Overview
 This project showcases a highly optimized, modern automation framework utilizing **Playwright** and **TypeScript**. Built with scalability in mind, it implements the **Page Object Model (POM)** architectural pattern and leverages free CI/CD cloud containerization to achieve lightning-fast test execution.
 
-### 🎯 Demo Scope & Coverage
+### 🎯 Advanced Demo Scope & Coverage
 To demonstrate core user flows and framework capabilities, this suite focuses on two critical application pathways:
 
 1. **Login Flow Verification**
-   * Validates successful authentication across various user profiles (`standard_user`, `problem_user`, etc.).
-   * Confirms error-handling states, performance tolerances, and session management.
-   * *Specification Details:* See [specs/login.md](specs/login.md).
+   * **Multi-Persona Testing**: Dedicated test cases for `standard`, `problem`, `performance_glitch`, and `error` users.
+   * **Visual Regression Detection**: Utilizes a custom `compareVisuals` helper to programmatically detect UI bugs (like identical product images) by comparing image buffers and `src` attributes.
+   * **Field Validation**: Robust assertions for error messages and SVG icons appearing during invalid login attempts.
+   * *Specification Details:* See specs/login.md.
 
 2. **End-to-End Checkout Flow**
    * Simulates the complete customer purchasing journey: adding items to the cart, navigating the cart inventory, filling out shipping information, and verifying financial totals.
@@ -213,11 +214,11 @@ tests/
 │   ├── base.page.ts         # Base page class with common methods
 │   ├── login.page.ts        # Login page helpers
 │   ├── inventory.page.ts    # Inventory page helpers
-│   └── ...
+│   └── checkout-*.page.ts   # Specialized checkout step pages
 ├── common/
-│   └── component/           # Reusable component objects
+│   └── component/           # Reusable UI component objects
 │       └── navigation-bar.ts
-├── helpers/                 # Shared utilities
+├── helpers/                 # Shared utilities and configurations
 │   └── utils.ts
 └── *.spec.ts               # Test implementations (tests/ root only)
 
@@ -368,5 +369,3 @@ Complete guide: [TESTING_ARCHITECTURE.md](/tests/TESTING_ARCHITECTURE.md)
 - `fill*()` - Form filling
 
 ---
-
-

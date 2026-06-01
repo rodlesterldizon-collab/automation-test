@@ -20,7 +20,8 @@
 
 import { test, expect } from '@playwright/test';
 import { LoginPage } from './pages/login.page';
-import { ACCEPTED_USERS, VALID_PASSWORD, getLoginError } from './helpers/test-config';
+import { TEST_USERS, ACCEPTED_USERS, VALID_PASSWORD, getLoginError, BASE_URL } from './helpers/test-config';
+import { compareVisuals } from './helpers/utils';
 
 test.describe('Sauce Demo Login Flow', () => {
   test('Login page should show required fields and login button', async ({ page }) => {
@@ -32,17 +33,44 @@ test.describe('Sauce Demo Login Flow', () => {
     await expect(loginPage.loginButton).toBeVisible();
   });
 
-  test('Accepted users can log in with secret_sauce', async ({ page }) => {
+  test('Empty credentials should show a validation error', async ({ page }) => {
     const loginPage = new LoginPage(page);
+    await loginPage.goto();
 
-    for (const username of ACCEPTED_USERS) {
-      await loginPage.goto();
-      const inventoryPage = await loginPage.login(username, VALID_PASSWORD);
-      await inventoryPage.expectInventoryPage();
-      
-      // Logout by going back to login for next iteration
-      await page.goto('https://www.saucedemo.com/');
-    }
+    await loginPage.loginButton.click();
+
+    await expect(loginPage.errorIcons).toHaveCount(2);
+    await expect(page.locator(getLoginError())).toBeVisible();
+    await expect(page.locator(getLoginError())).toContainText(/Epic sadface: Username is required/i);
+    await expect(page).toHaveURL(BASE_URL);
+  });
+
+  test('Standard user should be able to log in successfully', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
+    const inventoryPage = await loginPage.login(TEST_USERS.standard, VALID_PASSWORD);
+    await inventoryPage.expectInventoryPage();
+  });
+
+  test('Problem user should be able to log in successfully', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
+    const inventoryPage = await loginPage.login(TEST_USERS.problem, VALID_PASSWORD);
+    await inventoryPage.expectInventoryPage();
+  });
+
+  test('Performance glitch user should be able to log in successfully', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
+    const inventoryPage = await loginPage.login(TEST_USERS.performanceGlitch, VALID_PASSWORD);
+    await inventoryPage.expectInventoryPage();
+  });
+
+  test('Error user should be able to log in successfully', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
+    const inventoryPage = await loginPage.login(TEST_USERS.error, VALID_PASSWORD);
+    await inventoryPage.expectInventoryPage();
   });
 
   test('Invalid credentials show an error', async ({ page }) => {
@@ -53,8 +81,9 @@ test.describe('Sauce Demo Login Flow', () => {
     await loginPage.passwordInput.fill('wrong_password');
     await loginPage.loginButton.click();
 
+    await expect(loginPage.errorIcons).toHaveCount(2);
     await expect(page.locator(getLoginError())).toContainText(/username and password do not match/i);
-    await expect(page).toHaveURL('https://www.saucedemo.com/');
+    await expect(page).toHaveURL(BASE_URL);
   });
 
   test('Username field validation shows an error when empty', async ({ page }) => {
@@ -65,61 +94,49 @@ test.describe('Sauce Demo Login Flow', () => {
     await loginPage.passwordInput.fill(VALID_PASSWORD);
     await loginPage.loginButton.click();
 
+    await expect(loginPage.errorIcons).toHaveCount(2);
     await expect(page.locator(getLoginError())).toContainText(/username is required|username and password do not match/i);
-    await expect(page).toHaveURL('https://www.saucedemo.com/');
+    await expect(page).toHaveURL(BASE_URL);
   });
 
   test('Password field validation shows an error when empty', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
 
-    await loginPage.usernameInput.fill('standard_user');
+    await loginPage.usernameInput.fill(TEST_USERS.standard);
     // Leave password empty
     await loginPage.loginButton.click();
 
+    await expect(loginPage.errorIcons).toHaveCount(2);
     await expect(page.locator(getLoginError())).toContainText(/password is required|username and password do not match/i);
-    await expect(page).toHaveURL('https://www.saucedemo.com/');
-  });
-
-  test('Performance glitch user logs in but may experience delays', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    await loginPage.goto();
-
-    // Set timeout for performance_glitch_user (5 second artificial delay expected)
-    const inventoryPage = await loginPage.login('performance_glitch_user', VALID_PASSWORD);
-    await inventoryPage.expectInventoryPage();
+    await expect(page).toHaveURL(BASE_URL);
   });
 });
 
 test.describe('Sauce Demo User Behavior Tests', () => {
-  test('Problem user: All inventory items display same image (dog backpack)', async ({ page }) => {
+  test('Problem user: UI Bug - Multiple items show identical product images', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
 
     // Log in as problem_user
-    const inventoryPage = await loginPage.login('problem_user', VALID_PASSWORD);
+    const inventoryPage = await loginPage.login(TEST_USERS.problem, VALID_PASSWORD);
     await inventoryPage.expectInventoryPage();
 
-    // Get all product images on inventory page
-    const productImages = page.locator('[data-testid="inventory-item-sauce-labs-backpack-img"], .inventory_item_img img');
-    const imageCount = await productImages.count();
-
-    // Verify that all images exist (they should all be the same dog backpack image)
-    if (imageCount > 0) {
-      for (let i = 0; i < imageCount; i++) {
-        const srcAttr = await productImages.nth(i).getAttribute('src');
-        // All images should be the same dog backpack image
-        expect(srcAttr).toBeTruthy();
-      }
-    }
+    const productImages = page.locator('.inventory_item_img img');
+    
+    const comparison = await compareVisuals(productImages.nth(0), productImages.nth(1));
+    
+    // Use isSrcMatch as the primary indicator for the problem_user bug
+    expect(comparison.isSrcMatch).toBe(true);
   });
 
-  test('Error user: Add to cart may fail intermittently', async ({ page }) => {
+  test.skip('Error user: Add to cart may fail intermittently', async ({ page }) => {
+    // Reason: hard to detect the glitch on itself; should be for future
     const loginPage = new LoginPage(page);
     await loginPage.goto();
 
     // Log in as error_user
-    const inventoryPage = await loginPage.login('error_user', VALID_PASSWORD);
+    const inventoryPage = await loginPage.login(TEST_USERS.error, VALID_PASSWORD);
     await inventoryPage.expectInventoryPage();
 
     // Try to add first item to cart

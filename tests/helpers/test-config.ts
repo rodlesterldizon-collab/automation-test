@@ -23,6 +23,7 @@ export const VALID_PASSWORD = 'secret_sauce';
 
 export const SELECTORS = {
   loginError: '[data-test="error"]',
+  errorIcon: 'svg.error_icon',
 };
 
 /**

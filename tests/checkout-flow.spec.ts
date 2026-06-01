@@ -37,13 +37,14 @@
 
 import { test } from '@playwright/test';
 import { LoginPage } from './pages/login.page';
+import { TEST_USERS, VALID_PASSWORD } from './helpers/test-config';
 
 test.describe('Sauce Demo Checkout Flow', () => {
   test('Standard user can complete checkout successfully', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
 
-    const inventoryPage = await loginPage.login('standard_user', 'secret_sauce');
+    const inventoryPage = await loginPage.login(TEST_USERS.standard, VALID_PASSWORD);
     await inventoryPage.addProductsToCart(1);
     await inventoryPage.expectCartBadgeCount(1);
 
@@ -65,7 +66,7 @@ test.describe('Sauce Demo Checkout Flow', () => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
 
-    const inventoryPage = await loginPage.login('standard_user', 'secret_sauce');
+    const inventoryPage = await loginPage.login(TEST_USERS.standard, VALID_PASSWORD);
     await inventoryPage.addProductsToCart(2);
     await inventoryPage.expectCartBadgeCount(2);
 
@@ -82,7 +83,7 @@ test.describe('Sauce Demo Checkout Flow', () => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
 
-    const inventoryPage = await loginPage.login('standard_user', 'secret_sauce');
+    const inventoryPage = await loginPage.login(TEST_USERS.standard, VALID_PASSWORD);
     
     // Add three items to cart
     await inventoryPage.addProductsToCart(3);
@@ -105,7 +106,7 @@ test.describe('Sauce Demo Checkout Flow', () => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
 
-    const inventoryPage = await loginPage.login('standard_user', 'secret_sauce');
+    const inventoryPage = await loginPage.login(TEST_USERS.standard, VALID_PASSWORD);
     
     // Add first item to cart
     await inventoryPage.addProductsToCart(1);
@@ -127,7 +128,7 @@ test.describe('Sauce Demo Checkout Flow', () => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
 
-    const inventoryPage = await loginPage.login('standard_user', 'secret_sauce');
+    const inventoryPage = await loginPage.login(TEST_USERS.standard, VALID_PASSWORD);
     
     // Add item to cart
     await inventoryPage.addProductsToCart(1);
@@ -148,7 +149,7 @@ test.describe('Sauce Demo Checkout Flow', () => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
 
-    const inventoryPage = await loginPage.login('standard_user', 'secret_sauce');
+    const inventoryPage = await loginPage.login(TEST_USERS.standard, VALID_PASSWORD);
     
     // Add item to cart
     await inventoryPage.addProductsToCart(1);
