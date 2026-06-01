@@ -16,7 +16,7 @@ jobs:
     
     # 🐋 Using the free Microsoft container with Playwright pre-installed
     container:
-      image: mcr.microsoft.com/playwright:v1.44.0-jammy
+      image: mcr.microsoft.com/playwright:v1.59.1-jammy
 
     steps:
     - name: Checkout repository
