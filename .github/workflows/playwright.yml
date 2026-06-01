@@ -19,8 +19,10 @@ jobs:
       image: mcr.microsoft.com/playwright:v1.59.1-jammy
 
     # 🔑 Firefox permission fix: Set HOME=/root so Firefox owns its sandbox
+    # 🚀 Opt-in to Node 24 for actions to resolve deprecation warnings
     env:
       HOME: /root
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
     - name: Checkout repository
