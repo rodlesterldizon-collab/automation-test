@@ -1,92 +1,243 @@
 
-## Browser Installation Optimization
+# automation-test
 
-The GitHub Actions workflow is currently configured to install only **Chromium** to optimize CI/CD pipeline speed. Installing all browsers adds significant time to the build process.
+Playwright E2E automation testing framework for Sauce Demo with optimized GitHub Actions CI/CD using Docker containers.
 
-### Installation Times Comparison:
+## Quick Start
 
-- **Chromium only** - ~2-3 minutes (current)
-- **All browsers** (Chromium, Firefox, WebKit) - ~5-8 minutes
+```bash
+# Install dependencies
+npm install
 
-### Enabling Additional Browsers
+# Run all tests locally
+npx playwright test
 
-To run tests on multiple browsers, edit `.github/workflows/playwright.yml` and update the "Install Playwright Browsers" step:
+# Run tests in UI mode
+npm run test:ui
 
-#### Option 1: Install All Browsers
-```yaml
-run: npx playwright install --with-deps
+# Run tests in debug mode
+npx playwright test --debug
 ```
 
-#### Option 2: Install Specific Browsers
+---
 
-- **Chromium only** (default/current):
-	```yaml
-	run: npx playwright install chromium --with-deps
-	```
+## GitHub Actions CI/CD Optimization
 
-- **Firefox only**:
-	```yaml
-	run: npx playwright install firefox --with-deps
-	```
+### 🐋 Docker Container Optimization (Fastest - ~1 minute)
 
-- **WebKit only**:
-	```yaml
-	run: npx playwright install webkit --with-deps
-	```
+The GitHub Actions workflow now uses **Microsoft's free Docker container** with Playwright pre-installed. This eliminates slow browser installation steps entirely.
 
-- **Multiple browsers** (e.g., Chromium + Firefox):
-	```yaml
-	run: npx playwright install chromium firefox --with-deps
-	```
+**What's optimized:**
+- ✅ No Node setup required (Docker handles it)
+- ✅ No browser installation (pre-installed in image)
+- ✅ All browsers ready (Chromium, Firefox, WebKit)
+- ✅ Build time: **~1 minute** (vs. 5-8 minutes before)
 
-### Running Tests Locally with Multiple Browsers
+**Current workflow configuration:**
+```yaml
+container:
+  image: mcr.microsoft.com/playwright:v1.59.1-jammy
 
-To run your tests locally with all browsers:
+env:
+  HOME: /root  # Firefox sandbox permission fix
+
+steps:
+  - uses: actions/checkout@v4
+  - run: npm ci
+  - run: npx playwright test
+```
+
+**Playwright version compatibility:** The Docker image version (`v1.59.1`) must match your project's Playwright version in `package.json`. Update both if you upgrade Playwright.
+
+### Browser Testing Coverage
+
+With the Docker approach, your CI automatically tests across all browsers:
+- ✅ **Chromium** - Full support
+- ✅ **Firefox** - Full support (requires `HOME=/root` env var)
+- ✅ **WebKit** - Full support
+
+To test locally with all browsers:
 ```bash
 npx playwright install
 npx playwright test
 ```
 
-To run with a specific browser:
+To test with a specific browser:
 ```bash
 npx playwright test --project=chromium
 npx playwright test --project=firefox
 npx playwright test --project=webkit
 ```
-# automation-test
 
-## AI Test Healer (Disabled)
+---
 
-The AI Test Healer automatically fixes failing tests in CI/CD using GitHub Copilot. Currently disabled to manage costs.
+## Test Organization & Architecture
+
+### Page Object Model (POM) Pattern
+
+All tests follow the **Page Object Model** pattern for maintainability and reusability.
+
+**Structure:**
+```
+tests/
+├── pages/                    # Page objects only
+│   ├── base.page.ts         # Base page class with common methods
+│   ├── login.page.ts        # Login page helpers
+│   ├── inventory.page.ts    # Inventory page helpers
+│   └── ...
+├── common/
+│   └── component/           # Reusable component objects
+│       └── navigation-bar.ts
+├── helpers/                 # Shared utilities
+│   └── utils.ts
+└── *.spec.ts               # Test implementations (tests/ root only)
+
+specs/                       # Test specifications
+├── login.md
+├── checkout-flow.md
+└── README.md
+```
+
+**Architecture Rules:**
+- ✅ **DO**: Put page helpers and navigation in `tests/pages/*.ts`
+- ✅ **DO**: Put tests in `tests/*.spec.ts`
+- ✅ **DO**: Put utilities in `tests/helpers/`
+- ❌ **DON'T**: Put test logic in page objects
+- ❌ **DON'T**: Create page object files in `tests/` root or subdirectories
+
+See [TESTING_ARCHITECTURE.md](/tests/TESTING_ARCHITECTURE.md) for detailed guidelines.
+
+---
+
+## GitHub Copilot Agents
+
+The project includes AI agents for test automation, powered by GitHub Copilot. These agents are configured in `.github/agents/` and help with:
+
+### Available Agents
+
+1. **playwright-test-planner** - Creates comprehensive test plans
+   - Analyzes application features
+   - Generates test scenarios and specs
+   - Creates markdown test plans with step-by-step instructions
+
+2. **playwright-test-generator** - Generates test code from plans
+   - Creates test files from specifications
+   - Follows Page Object Model pattern
+   - Generates proper Playwright syntax
+
+3. **playwright-test-healer** - Fixes failing tests automatically
+   - Diagnoses test failures
+   - Generates code fixes
+   - Currently disabled (see "AI Test Healer" section below)
+
+4. **playwright-test-architecture** - Enforces POM rules
+   - Validates test structure
+   - Ensures proper separation of concerns
+   - Prevents test logic in page objects
+
+### Using Agents in GitHub Copilot Chat
+
+```
+@playwright-test-planner Create a test plan for the login flow
+@playwright-test-generator Generate tests from the login.md spec
+@playwright-test-architecture Review the test structure for compliance
+```
+
+**Agent best practices:**
+- Use the **planner** first to create specs in `specs/` folder
+- Use the **generator** to implement tests from specs
+- Use the **architecture** agent for code reviews
+- Reference [TESTING_ARCHITECTURE.md](/tests/TESTING_ARCHITECTURE.md) in prompts
+
+---
+
+## AI Test Healer (Currently Disabled)
+
+The AI Test Healer automatically fixes failing tests using GitHub Copilot. It's disabled by default to manage costs.
 
 ### Enabling the AI Healer
 
-To enable the automatic test healing feature, uncomment the following steps in `.github/workflows/playwright.yml`:
-
-1. **Install Copilot CLI** - Installs the GitHub Copilot CLI tool needed for the healer
-2. **Run Playwright Test Healer on Failure** - Activates the AI agent to diagnose and fix failing tests
-3. **Commit and Push AI Fixes** - Automatically commits and pushes the AI-generated fixes
-
-#### Steps to Enable:
+To activate automatic test healing:
 
 1. Open `.github/workflows/playwright.yml`
-2. Find the commented-out sections starting with `# - name: Install Copilot CLI`
-3. Remove the `#` character from the beginning of each line in these three sections
-4. Ensure you have a valid `COPILOT_PAT` (Personal Access Token) secret configured in your GitHub repository settings
-5. Commit and push your changes
+2. Find the commented sections starting with `# - name: Install Copilot CLI`
+3. Uncomment all three healing sections:
+   - `Install Copilot CLI`
+   - `Run Playwright Test Healer on Failure`
+   - `Commit and Push AI Fixes`
+4. Ensure you have `COPILOT_PAT` secret configured in repository settings
+5. Push your changes
 
-#### Requirements:
+**Requirements:**
+- Active GitHub Copilot subscription
+- `COPILOT_PAT` token with `repo` and `workflow` scopes
+- Monitor API usage to avoid unexpected costs
 
-- **GitHub Copilot Subscription** - Required for API access
-- **GitHub Token** (`COPILOT_PAT` secret) - Set in repository secrets with appropriate permissions
-- **Sufficient API quota** - Monitor your Copilot usage to avoid unexpected costs
+**How it works:**
+1. Tests fail in CI
+2. Copilot CLI installs automatically
+3. AI analyzes failures and generates fixes
+4. Fixed code auto-commits and pushes to your branch
 
-#### How It Works:
+---
 
-When tests fail in the CI pipeline:
-1. The Copilot CLI is installed
-2. The playwright-test-healer agent analyzes the failing tests
-3. The AI diagnoses the issues and generates fixes
-4. Fixed code is automatically committed and pushed to your branch
+## Browser Installation (Legacy Approach)
 
-For more information, see the test specifications in `specs/` and test files in `tests/`.
+> **Note:** This section describes the previous approach before Docker optimization. The current `.github/workflows/playwright.yml` uses Docker, which is faster.
+
+If you prefer manual browser installation instead of Docker, you can:
+
+1. Remove the `container:` section from workflow
+2. Add `- uses: actions/setup-node@v4` back
+3. Run manual installation:
+   ```yaml
+   run: npx playwright install chromium --with-deps
+   ```
+
+**Installation times (legacy):**
+- Chromium only: ~2-3 minutes
+- All browsers: ~5-8 minutes
+
+---
+
+## Test Specifications
+
+### Available Test Suites
+
+- **[specs/login.md](/specs/login.md)** - Login flow tests (4 users, 5 scenarios)
+- **[specs/checkout-flow.md](/specs/checkout-flow.md)** - Checkout flow tests (6 scenarios)
+
+### Test Users (Sauce Demo)
+
+The login tests validate behavior across different user types:
+
+- `standard_user` - Normal user, no issues
+- `problem_user` - Logs in but UI is broken (all items show same image)
+- `performance_glitch_user` - Logs in with 5-second artificial delay
+- `error_user` - Logs in but has intermittent button failures
+
+All users use password: `secret_sauce`
+
+---
+
+## Testing Architecture Guide
+
+Complete guide: [TESTING_ARCHITECTURE.md](/tests/TESTING_ARCHITECTURE.md)
+
+**Key sections:**
+- Directory structure and file organization
+- DO / DON'T patterns
+- Page Object best practices with examples
+- Test case structure guidelines
+- Method naming conventions
+- Common mistakes and corrections
+
+**Quick reference - Method naming:**
+- `goto()` / `go*()` - Navigation (returns new page)
+- `add*()` / `remove*()` - User interactions
+- `expect*()` - Verifications (uses Playwright expect)
+- `fill*()` - Form filling
+
+---
+
+
