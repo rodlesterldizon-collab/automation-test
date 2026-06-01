@@ -24,7 +24,6 @@ To demonstrate core user flows and framework capabilities, this suite focuses on
 ---
 
 
-# automation-test
 
 Playwright E2E automation testing framework for Sauce Demo with optimized GitHub Actions CI/CD using Docker containers.
 
