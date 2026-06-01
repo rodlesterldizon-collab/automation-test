@@ -24,40 +24,48 @@ jobs:
       run: npm ci
 
     - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+      # Currently installing only Chromium for faster CI/CD runs
+      # To install all browsers (chromium, firefox, webkit), uncomment the line below:
+      # run: npx playwright install --with-deps
+      # To install specific browsers, use:
+      # - Chromium only: npx playwright install chromium --with-deps
+      # - Firefox only: npx playwright install firefox --with-deps
+      # - WebKit only: npx playwright install webkit --with-deps
+      # - Multiple: npx playwright install chromium firefox --with-deps
+      run: npx playwright install chromium --with-deps
 
     - name: Run Playwright tests
       run: npx playwright test
 
-    - name: Install Copilot CLI
-      if: failure()
-      run: npm install -g @github/copilot@latest
+    # - name: Install Copilot CLI
+    #   if: failure()
+    #   run: npm install -g @github/copilot@latest
 
-    - name: Run Playwright Test Healer on Failure
-      if: failure()
-      env:
-        GH_TOKEN: ${{ secrets.COPILOT_PAT }}
-      run: |
-        echo "Tests failed. Starting AI Healer agent..."
-        copilot -p "The tests failed in CI. Use the tools to diagnose, fix the code, and verify the fix." \
-                --agent playwright-test-healer \
-                --autopilot \
-                --allow-all
+    # - name: Run Playwright Test Healer on Failure
+    #   if: failure()
+    #   env:
+    #     GH_TOKEN: ${{ secrets.COPILOT_PAT }}
+    #   run: |
+    #     echo "Tests failed. Starting AI Healer agent..."
+    #     copilot -p "The tests failed in CI. Use the tools to diagnose, fix the code, and verify the fix." \
+    #             --agent playwright-test-healer \
+    #             --autopilot \
+    #             --allow-all
 
-    - name: Commit and Push AI Fixes
-      if: failure()
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git add .
-        
-        # Check if the AI actually changed any files before trying to commit
-        if ! git diff --cached --quiet; then
-          git commit -m "fix: AI-generated healing for failing tests"
-          git push origin HEAD:${{ github.head_ref || github.ref_name }}
-        else
-          echo "The AI Healer ran, but no files were permanently changed."
-        fi
+    # - name: Commit and Push AI Fixes
+    #   if: failure()
+    #   run: |
+    #     git config --global user.name "github-actions[bot]"
+    #     git config --global user.email "github-actions[bot]@users.noreply.github.com"
+    #     git add .
+    #     
+    #     # Check if the AI actually changed any files before trying to commit
+    #     if ! git diff --cached --quiet; then
+    #       git commit -m "fix: AI-generated healing for failing tests"
+    #       git push origin HEAD:${{ github.head_ref || github.ref_name }}
+    #     else
+    #       echo "The AI Healer ran, but no files were permanently changed."
+    #     fi
 
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}

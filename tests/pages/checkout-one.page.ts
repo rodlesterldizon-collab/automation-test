@@ -1,12 +1,14 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { BasePage } from './base.page';
 import { CheckoutTwoPage } from './checkout-two.page';
+import { CartPage } from './cart.page';
 
-export class CheckoutOnePage extends BasePage { 
+export class CheckoutOnePage extends BasePage {
   readonly firstNameInput: Locator;
   readonly lastNameInput: Locator;
   readonly postalCodeInput: Locator;
   readonly continueButton: Locator;
+  readonly cancelButton: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -14,6 +16,7 @@ export class CheckoutOnePage extends BasePage {
     this.lastNameInput = page.locator('#last-name, [data-testid="last-name"]');
     this.postalCodeInput = page.locator('#postal-code, [data-testid="postal-code"]');
     this.continueButton = page.locator('#continue, button:has-text("Continue"), [data-testid="continue-button"]');
+    this.cancelButton = page.locator('[data-test="cancel"], button:has-text("Cancel"), [data-testid="cancel-button"]');
   }
 
   async expectPage() {
@@ -29,5 +32,12 @@ export class CheckoutOnePage extends BasePage {
     const checkoutTwo = new CheckoutTwoPage(this.page);
     await checkoutTwo.expectPage();
     return checkoutTwo;
+  }
+
+  async cancelCheckout() {
+    await this.cancelButton.click();
+    const cartPage = new CartPage(this.page);
+    await cartPage.expectCartPage();
+    return cartPage;
   }
 }

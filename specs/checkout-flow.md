@@ -60,7 +60,90 @@ Test plan for the standard user checkout flow on Sauce Demo, covering login, pro
     - expect: The remaining product is listed with correct details.
     - expect: A Checkout button remains visible.
 
-#### 1.3. Attempt checkout with no cart items
+#### 1.3. Complete checkout with multiple items
+
+**File:** `tests/checkout-flow.spec.ts`
+
+**Steps:**
+  1. Log in as `standard_user` with password `secret_sauce`.
+    - expect: The inventory/products page is displayed.
+  2. Add first item (Sauce Labs Backpack) to cart.
+    - expect: Cart badge shows '1'
+  3. Add second item (Sauce Labs Bike Light) to cart.
+    - expect: Cart badge shows '2'
+  4. Add third item (Sauce Labs Bolt T-Shirt) to cart.
+    - expect: Cart badge shows '3'
+  5. Open the shopping cart.
+    - expect: Cart page displays all three items.
+    - expect: Total items shown: 3
+  6. Click 'Checkout' button.
+    - expect: Checkout step one is displayed with empty form fields.
+  7. Fill checkout form with valid information: First Name: 'Jane', Last Name: 'Smith', Postal Code: '54321'.
+    - expect: All fields are populated correctly.
+  8. Click 'Continue' button.
+    - expect: Checkout step two displays all three items in the order overview.
+    - expect: Item total, tax, and total are calculated correctly.
+  9. Click 'Finish' button.
+    - expect: Order is completed successfully.
+    - expect: Confirmation page is displayed with 'THANK YOU FOR YOUR ORDER' message.
+
+#### 1.4. Review cart before checkout
+
+**File:** `tests/checkout-flow.spec.ts`
+
+**Steps:**
+  1. Log in as `standard_user` with password `secret_sauce`.
+    - expect: The inventory/products page is displayed.
+  2. Add first item (Sauce Labs Backpack) to cart.
+    - expect: Cart badge shows '1'
+  3. Click on the cart badge to open cart.
+    - expect: Cart page displays the item with correct details.
+    - expect: Total quantity is 1.
+  4. Verify 'Continue Shopping' button is present.
+    - expect: 'Continue Shopping' button is visible and clickable.
+  5. Verify 'Checkout' button is present.
+    - expect: 'Checkout' button is visible and clickable.
+  6. Remove the item by clicking 'Remove' button.
+    - expect: Item is removed from cart.
+    - expect: Cart becomes empty.
+    - expect: Cart badge should be removed or show 0.
+
+#### 1.5. Cancel checkout from step one
+
+**File:** `tests/checkout-flow.spec.ts`
+
+**Steps:**
+  1. Log in as `standard_user` with password `secret_sauce`.
+    - expect: The inventory/products page is displayed.
+  2. Add an item (Sauce Labs Backpack) to cart.
+    - expect: Item is added and cart badge shows '1'.
+  3. Open cart and click 'Checkout' button.
+    - expect: Checkout step one form is displayed.
+  4. Click the 'Cancel' button.
+    - expect: User is redirected back to the cart page.
+    - expect: The item is still in the cart.
+
+#### 1.6. Cancel checkout from step two
+
+**File:** `tests/checkout-flow.spec.ts`
+
+**Steps:**
+  1. Log in as `standard_user` with password `secret_sauce`.
+    - expect: The inventory/products page is displayed.
+  2. Add an item (Sauce Labs Backpack) to cart.
+    - expect: Item is added and cart badge shows '1'.
+  3. Open cart and click 'Checkout' button.
+    - expect: Checkout step one form is displayed.
+  4. Fill in the checkout form with valid data: First Name: 'John', Last Name: 'Doe', Postal Code: '12345'.
+    - expect: All fields are populated correctly.
+  5. Click 'Continue' button.
+    - expect: Checkout step two overview is displayed.
+  6. Click the 'Cancel' button.
+    - expect: User is redirected back to the inventory page.
+    - expect: The item is still in the cart (cart badge shows '1').
+    - expect: All cart data is preserved.
+
+#### 1.7. Attempt checkout with no cart items
 
 **File:** `specs/checkout-flow.md`
 
@@ -75,4 +158,4 @@ Test plan for the standard user checkout flow on Sauce Demo, covering login, pro
     - expect: The application prevents checkout or displays an empty cart warning.
   4. Verify the user is still able to return to inventory to add products.
     - expect: The Back Home or Continue Shopping option is available.
-    - expect: The user can navigate back to the inventory page. 
+    - expect: The user can navigate back to the inventory page.
