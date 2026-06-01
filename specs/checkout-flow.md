@@ -75,4 +75,4 @@ Test plan for the standard user checkout flow on Sauce Demo, covering login, pro
     - expect: The application prevents checkout or displays an empty cart warning.
   4. Verify the user is still able to return to inventory to add products.
     - expect: The Back Home or Continue Shopping option is available.
-    - expect: The user can navigate back to the inventory page.
+    - expect: The user can navigate back to the inventory page. 
