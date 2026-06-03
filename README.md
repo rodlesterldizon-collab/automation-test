@@ -1,6 +1,11 @@
 # 🧪 Sauce Labs E2E Automation Framework
 
 [![Playwright Tests](https://github.com/rodlesterldizon-collab/automation-test/actions/workflows/playwright.yml/badge.svg)](https://github.com/rodlesterldizon-collab/automation-test/actions/workflows/playwright.yml)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Playwright](https://img.shields.io/badge/Playwright-45BA4B?style=for-the-badge&logo=playwright&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2671E5?style=for-the-badge&logo=githubactions&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
 A professional-grade, enterprise-ready end-to-end testing suite for the [Sauce Demo](https://www.saucedemo.com/) e-commerce platform. Created and maintained by **Rod Lester Dizon**.
 
@@ -17,9 +22,61 @@ The goal of this project is to provide a robust, scalable, and maintainable auto
 - **Reporting:** Playwright HTML Reports with Trace Viewer & Screenshot artifacts
 - **Logic:** Centralized Configuration & Visual Bug Detection Utilities
 
+## 📖 Table of Contents
+
+- [🎯 The "Why"](#-the-why)
+- [🛠️ Tech Stack & Patterns](#️-tech-stack--patterns)
+  - [🖼️ Visual Preview](#️-visual-preview)
+  - [🎯 Advanced Demo Scope & Coverage](#-advanced-demo-scope--coverage)
+    - [Login Flow Verification](#login-flow-verification)
+    - [End-to-End Checkout Flow](#end-to-end-checkout-flow)
+- [🤖 GitHub Copilot Agents](#-github-copilot-agents)
+  - [Available Agents](#available-agents)
+  - [Using Agents in GitHub Copilot Chat](#using-agents-in-github-copilot-chat)
+- [AI Test Healer (Currently Disabled)](#ai-test-healer-currently-disabled)
+  - [Enabling the AI Healer](#enabling-the-ai-healer)
+- [🚀 Quick Start](#-quick-start)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Git Workflow Reference](#git-workflow-reference)
+  - [Create a New Branch](#create-a-new-branch)
+  - [Make Changes & Commit](#make-changes--commit)
+  - [Push Branch to GitHub](#push-branch-to-github)
+  - [Merge Branch to Main](#merge-branch-to-main)
+  - [Complete Workflow Example](#complete-workflow-example)
+  - [Useful Git Commands](#useful-git-commands)
+- [GitHub Actions CI/CD Optimization](#github-actions-cicd-optimization)
+  - [🐋 Docker Container Optimization (Fastest - ~1 minute)](#-docker-container-optimization-fastest---1-minute)
+  - [Browser Testing Coverage](#browser-testing-coverage)
+- [Test Organization & Architecture](#test-organization--architecture)
+  - [Page Object Model (POM) Pattern](#page-object-model-pom-pattern)
+- [Browser Installation (Legacy Approach)](#browser-installation-legacy-approach)
+- [Test Specifications](#test-specifications)
+  - [Available Test Suites](#available-test-suites)
+  - [Test Users (Sauce Demo)](#test-users-sauce-demo)
+- [Testing Architecture Guide](#testing-architecture-guide)
+- [📄 License](#-license)
+
+---
+
+## 🖼️ Visual Preview
+
+Experience the framework in action across the core user journey.
+
+| **1. Authentication** | **2. Product Management** | **3. Checkout Funnel** |
+| :--- | :--- | :--- |
+| ![Login](screenshots/login.png) | ![Inventory](screenshots/inventory.png) | ![Cart](screenshots/cart.png) |
+| **Login Page:** Validates credentials and field requirements for multiple user personas. | **Product Inventory:** Dynamic product grid where the framework manages cart state and visual regression. | **Shopping Cart:** Real-time calculation of items and preparation for the secure checkout flow. |
+
+> _Note: These visuals are captured automatically by the framework to ensure UI consistency across browser engines._
+
 ---
 
 ### 🎯 Advanced Demo Scope & Coverage
+
+> [!NOTE]
+> **Framework Showcase Note:** The number of test cases in this repository is intentionally focused on high-impact scenarios. Rather than aiming for 100% feature coverage of the Sauce Demo site, this project serves as a **technical showcase** for advanced automation patterns, scalable architecture, and modern CI/CD integrations.
+
 To demonstrate core user flows and framework capabilities, this suite focuses on two critical application pathways:
 
 1. **Login Flow Verification**
@@ -252,75 +309,43 @@ See [TESTING_ARCHITECTURE.md](/tests/TESTING_ARCHITECTURE.md) for detailed guide
 
 ---
 
-## GitHub Copilot Agents
+## 🤖 The Agentic Workflow: AI-Augmented Engineering
 
-The project includes AI agents for test automation, powered by GitHub Copilot. These agents are configured in `.github/agents/` and help with:
+This framework is built as an **AI-augmented engineering environment**. Rather than writing every line of boilerplate manually, this suite leverages custom GitHub Copilot Agents to manage the lifecycle of a test from discovery to self-healing.
 
-### Available Agents
+### The "Spec-to-Code" Lifecycle
+Every test in this repository follows a structured AI-assisted workflow:
 
-1. **playwright-test-planner** - Creates comprehensive test plans
-   - Analyzes application features
-   - Generates test scenarios and specs
-   - Creates markdown test plans with step-by-step instructions
+| Agent | Role | Contribution to this Suite |
+| :--- | :--- | :--- |
+| **Planner** | **Discovery** | Analyzed the Sauce Demo site to generate the markdown specs found in `/specs`. |
+| **Generator** | **Scaffolding** | Read the markdown specs and generated the initial Page Object code and `.spec.ts` files. |
+| **Architecture** | **Governance** | Validated that all generated code strictly follows our POM and directory standards. |
+| **Healer** | **Maintenance** | (Optional) Automatically diagnoses CI failures and pushes fixes for broken selectors. |
 
-2. **playwright-test-generator** - Generates test code from plans
-   - Creates test files from specifications
-   - Follows Page Object Model pattern
-   - Generates proper Playwright syntax
+### Interacting with the Agents
 
-3. **playwright-test-healer** - Fixes failing tests automatically
-   - Diagnoses test failures
-   - Generates code fixes
-   - Currently disabled (see "AI Test Healer" section below)
+You can trigger these agents directly within GitHub Copilot Chat to extend the framework:
 
-4. **playwright-test-architecture** - Enforces POM rules
-   - Validates test structure
-   - Ensures proper separation of concerns
-   - Prevents test logic in page objects
-
-### Using Agents in GitHub Copilot Chat
-
+```text
+@playwright-test-planner     "Create a test plan for the inventory sorting flow"
+@playwright-test-generator   "Implement the tests defined in specs/inventory.md"
+@playwright-test-architecture "Check if my new page object follows the POM rules"
 ```
-@playwright-test-planner Create a test plan for the login flow
-@playwright-test-generator Generate tests from the login.md spec
-@playwright-test-architecture Review the test structure for compliance
-```
-
-**Agent best practices:**
-- Use the **planner** first to create specs in `specs/` folder
-- Use the **generator** to implement tests from specs
-- Use the **architecture** agent for code reviews
-- Reference [TESTING_ARCHITECTURE.md](/tests/TESTING_ARCHITECTURE.md) in prompts
 
 ---
 
-## AI Test Healer (Currently Disabled)
+### 🛠️ Self-Healing CI (Experimental)
 
-The AI Test Healer automatically fixes failing tests using GitHub Copilot. It's disabled by default to manage costs.
-
-### Enabling the AI Healer
-
-To activate automatic test healing:
-
-1. Open `.github/workflows/playwright.yml`
-2. Find the commented sections starting with `# - name: Install Copilot CLI`
-3. Uncomment all three healing sections:
-   - `Install Copilot CLI`
-   - `Run Playwright Test Healer on Failure`
-   - `Commit and Push AI Fixes`
-4. Ensure you have `COPILOT_PAT` secret configured in repository settings
-5. Push your changes
-
-**Requirements:**
-- Active GitHub Copilot subscription
-- `COPILOT_PAT` token with `repo` and `workflow` scopes
-- Monitor API usage to avoid unexpected costs
+The project includes a **Playwright Test Healer** agent designed to fix failing tests automatically in GitHub Actions.
 
 **How it works:**
-1. Tests fail in CI
-2. Copilot CLI installs automatically
-3. AI analyzes failures and generates fixes
-4. Fixed code auto-commits and pushes to your branch
+1. A test fails in the CI pipeline (e.g., due to a changed UI selector).
+2. The `playwright-test-healer` agent analyzes the failure logs and the DOM snapshot.
+3. The agent generates a fix, runs the test again, and **automatically commits/pushes** the corrected code.
+
+> [!TIP]
+> **To enable the Healer:** Uncomment the "Install Copilot CLI" and "Run Playwright Test Healer" sections in `.github/workflows/playwright.yml`. Ensure a `COPILOT_PAT` is configured in your repository secrets.
 
 ---
 
