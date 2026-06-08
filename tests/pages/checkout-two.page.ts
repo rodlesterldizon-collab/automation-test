@@ -18,7 +18,7 @@ export class CheckoutTwoPage extends BasePage {
     this.taxLabel = page.locator('[data-testid="tax"], .summary_tax_label');
     this.totalLabel = page.locator('[data-testid="total"], .summary_total_label');
     this.finishButton = page.getByRole('button', { name: 'Finish' }).or(page.locator('[data-testid="finish-button"]'));
-    this.cancelButton = page.locator('[data-test="cancel"], button:has-text("Cancel"), [data-testid="cancel-button"]');
+    this.cancelButton = page.getByRole('button', { name: 'Cancel' }).or(page.locator('[data-testid="cancel-button"]')).or(page.locator('.cancel_item'));
   }
 
   async expectPage() {

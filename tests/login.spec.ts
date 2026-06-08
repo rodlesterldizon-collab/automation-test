@@ -23,7 +23,7 @@ import { LoginPage } from './pages/login.page';
 import { TEST_USERS, VALID_PASSWORD, getLoginError, BASE_URL } from './helpers/test-config';
 import { compareVisuals } from './helpers/utils';
 
-test.describe('Sauce Demo Login Flow', () => {
+test.describe('Authentication State & Visual Regression Matrix', () => {
   test('Login page should show required fields and login button', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
@@ -129,32 +129,5 @@ test.describe('Sauce Demo User Behavior Tests', () => {
     // Use isSrcMatch as the primary indicator for the problem_user bug
     expect(comparison.isSrcMatch).toBe(true);
   });
-
-  test.skip('Error user: Add to cart may fail intermittently', async ({ page }) => {
-    // Reason: hard to detect the glitch on itself; should be for future
-    const loginPage = new LoginPage(page);
-    await loginPage.goto();
-
-    // Log in as error_user
-    const inventoryPage = await loginPage.login(TEST_USERS.error, VALID_PASSWORD);
-    await inventoryPage.expectInventoryPage();
-
-    // Try to add first item to cart
-    // Note: With error_user, this might fail or succeed intermittently
-    const addToCartButton = page.locator('button:has-text("Add to cart")').first();
-    
-    // Verify button exists but may not respond properly
-    if (await addToCartButton.isVisible()) {
-      try {
-        await addToCartButton.click({ timeout: 3000 });
-        // If successful, verify cart badge appears
-        const cartBadge = page.locator('[data-testid="shopping-cart-badge"]');
-        // Badge may or may not appear due to intermittent errors
-      } catch (e) {
-        // Expected behavior for error_user - buttons may not respond
-      }
-    }
-  });
-
 
 });

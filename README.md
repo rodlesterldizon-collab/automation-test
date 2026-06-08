@@ -1,89 +1,55 @@
-# 🧪 Sauce Labs E2E Automation Framework
+# 🚀 AI-Augmented Playwright Automation Infrastructure
 
 [![Playwright Tests](https://img.shields.io/github/actions/workflow/status/rodlesterldizon-collab/automation-test/playwright.yml?style=for-the-badge&logo=github-actions&label=CI%20Status)](https://github.com/rodlesterldizon-collab/automation-test/actions/workflows/playwright.yml) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) ![Playwright](https://img.shields.io/badge/Playwright-45BA4B?style=for-the-badge&logo=playwright&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2671E5?style=for-the-badge&logo=githubactions&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-A professional-grade, enterprise-ready end-to-end testing suite for the [Sauce Demo](https://www.saucedemo.com/) e-commerce platform. Created and maintained by **Rod Lester Dizon**.
+This repository serves as a **Senior-Level E2E Automation Infrastructure & AI Showcase**. It demonstrates a robust, scalable, and self-healing engineering environment designed for enterprise-grade software delivery. This framework utilizes a mock e-commerce frontend exclusively as a **"dummy target"** to demonstrate advanced pipeline architecture, architectural governance, and agentic workflows.
+
+Created and maintained by **Rod Lester Dizon**.
 
 ---
 
-## 🎯 The "Why"
-The goal of this project is to provide a robust, scalable, and maintainable automation solution that mimics real-world user behavior. It validates critical business paths—from authentication to complex checkout funnels—ensuring UI stability and data integrity across various user personas and browser engines.
+## 🤖 The AI-Augmented Engineering Lifecycle
+
+This infrastructure is a result of a multi-stage **Agentic Workflow**, demonstrating how AI agents collaborate with senior engineers to build enterprise-grade automation.
+
+1.  **Spec Discovery (The Planner):** The process began with an Agentic Planner that scanned the dummy target to autonomously generate comprehensive test plans, resulting in the `specs/login.md` and `specs/checkout-flow.md` files.
+2.  **Automated Scaffolding (The Generator):** These specs were fed into a Generator agent to produce the initial test implementations and baseline Page Objects.
+3.  **Human-in-the-Loop Refinement:** As part of senior-level oversight, manual interventions were made to correct logic discrepancies and edge cases that the initial AI generation miscalculated or overlooked.
+4.  **Architectural Alignment (The Architecture Agent):** A dedicated Architecture Agent was engaged to refactor and enforce strict **Page Object Model (POM)** standards, ensuring a clean separation of concerns.
+5.  **Infrastructure Hardening (The Healer):** Finally, the Healer agent was utilized to optimize selector strategies. It refactored the suite to prioritize Playwright's recommended locators (`getByRole`, `getByLabel`, `getByTestId`) with a resilient fallback to class-based selectors, ensuring stability before re-engaging the healing loop for future CI failures.
+
+### 🛠️ Self-Healing & Selector Resiliency
+The **Playwright Test Healer** doesn't just fix broken code; it enforces a strict selector hierarchy. It prioritizes `data-testid` and user-facing attributes, establishing a secondary fallback to CSS classes only if standard locators fail, effectively creating a "defense-in-depth" selector strategy.
+
+##  Dockerized CI/CD Optimization
+
+The pipeline is engineered for performance, achieving **~1-minute build times** in GitHub Actions.
+
+- **Binary Bypass:** Utilizes Microsoft’s `playwright:jammy` Docker image, eliminating the need for slow browser binary downloads during runtime.
+- **Environment Parity:** Dockerized runners ensure identical execution contexts across local, staging, and production-grade CI environments.
+- **Sharded Execution:** Configured for horizontal scaling to handle large-scale regression suites.
+
+## 🏗️ Architectural Governance & Selector Resiliency
+
+The codebase adheres to strict engineering standards to ensure long-term sustainability.
+
+- **Strict Page Object Model (POM):** Enforced separation of concerns where page objects manage UI interactions while spec files handle orchestration and assertions. This standard is programmatically audited by the **Architecture Agent** during the code generation phase.
+- **Defense-in-Depth Selector Strategy:** The infrastructure prioritizes a resilient locator hierarchy:
+  1. **Semantic Locators:** `getByRole`, `getByLabel`, and `getByText` to ensure accessibility and user-centric testing.
+  2. **Engineering Identifiers:** `data-testid` as a robust fallback for stable automation.
+  3. **Structural Fallbacks:** CSS classes as a tertiary layer, hardened by the **Healer Agent** during autonomous maintenance cycles.
+- **Visual Regression Matrix:** A custom `compareVisuals` utility enables programmatic detection of UI discrepancies—such as identical image sources—by comparing image buffers and DOM attributes.
+- **Directory Enforcement:** Mandatory isolation of helpers, common components, and test specifications as detailed in TESTING_ARCHITECTURE.md.
+
+---
 
 ## 🛠️ Tech Stack & Patterns
-- **Framework:** [Playwright](https://playwright.dev/) (Chromium, Firefox, WebKit)
+- **Framework:** Playwright (Chromium, Firefox, WebKit)
 - **Language:** TypeScript
 - **Architecture:** Page Object Model (POM)
 - **CI/CD:** GitHub Actions with Dockerized Runners
 - **Reporting:** Playwright HTML Reports with Trace Viewer & Screenshot artifacts
 - **Logic:** Centralized Configuration & Visual Bug Detection Utilities
-
-## 📖 Table of Contents
-
-- [🎯 The "Why"](#-the-why)
-- [🛠️ Tech Stack & Patterns](#️-tech-stack--patterns)
-  - [🖼️ Visual Preview](#️-visual-preview)
-  - [🎯 Advanced Demo Scope & Coverage](#-advanced-demo-scope--coverage)
-    - [Login Flow Verification](#login-flow-verification)
-    - [End-to-End Checkout Flow](#end-to-end-checkout-flow)
-- [🤖 GitHub Copilot Agents](#-github-copilot-agents)
-  - [Available Agents](#available-agents)
-  - [Using Agents in GitHub Copilot Chat](#using-agents-in-github-copilot-chat)
-- [AI Test Healer (Currently Disabled)](#ai-test-healer-currently-disabled)
-  - [Enabling the AI Healer](#enabling-the-ai-healer)
-- [🚀 Quick Start](#-quick-start)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Git Workflow Reference](#git-workflow-reference)
-  - [Create a New Branch](#create-a-new-branch)
-  - [Make Changes & Commit](#make-changes--commit)
-  - [Push Branch to GitHub](#push-branch-to-github)
-  - [Merge Branch to Main](#merge-branch-to-main)
-  - [Complete Workflow Example](#complete-workflow-example)
-  - [Useful Git Commands](#useful-git-commands)
-- [GitHub Actions CI/CD Optimization](#github-actions-cicd-optimization)
-  - [🐋 Docker Container Optimization (Fastest - ~1 minute)](#-docker-container-optimization-fastest---1-minute)
-  - [Browser Testing Coverage](#browser-testing-coverage)
-- [Test Organization & Architecture](#test-organization--architecture)
-  - [Page Object Model (POM) Pattern](#page-object-model-pom-pattern)
-- [Browser Installation (Legacy Approach)](#browser-installation-legacy-approach)
-- [Test Specifications](#test-specifications)
-  - [Available Test Suites](#available-test-suites)
-  - [Test Users (Sauce Demo)](#test-users-sauce-demo)
-- [Testing Architecture Guide](#testing-architecture-guide)
-- [📄 License](#-license)
-
----
-
-## 🖼️ Visual Preview
-
-Experience the framework in action across the core user journey.
-
-| **1. Authentication** | **2. Product Management** | **3. Checkout Funnel** |
-| :--- | :--- | :--- |
-| ![Login](screenshots/login.png) | ![Inventory](screenshots/inventory.png) | ![Cart](screenshots/cart.png) |
-| **Login Page:** Validates credentials and field requirements for multiple user personas. | **Product Inventory:** Dynamic product grid where the framework manages cart state and visual regression. | **Shopping Cart:** Real-time calculation of items and preparation for the secure checkout flow. |
-
-> _Note: These visuals are captured automatically by the framework to ensure UI consistency across browser engines._
-
----
-
-### 🎯 Advanced Demo Scope & Coverage
-
-> [!NOTE]
-> **Framework Showcase Note:** The number of test cases in this repository is intentionally focused on high-impact scenarios. Rather than aiming for 100% feature coverage of the Sauce Demo site, this project serves as a **technical showcase** for advanced automation patterns, scalable architecture, and modern CI/CD integrations.
-
-To demonstrate core user flows and framework capabilities, this suite focuses on two critical application pathways:
-
-1. **Login Flow Verification**
-   * **Multi-Persona Testing**: Dedicated test cases for `standard`, `problem`, `performance_glitch`, and `error` users.
-   * **Visual Regression Detection**: Utilizes a custom `compareVisuals` helper to programmatically detect UI bugs (like identical product images) by comparing image buffers and `src` attributes.
-   * **Field Validation**: Robust assertions for error messages and SVG icons appearing during invalid login attempts.
-   * *Specification Details:* See specs/login.md.
-
-2. **End-to-End Checkout Flow**
-   * Simulates the complete customer purchasing journey: adding items to the cart, navigating the cart inventory, filling out shipping information, and verifying financial totals.
-   * Ensures data integrity and UI stability throughout the critical checkout funnel.
-   * *Specification Details:* See [specs/checkout-flow.md](/specs/checkout-flow.md).
 
 ---
 
@@ -216,61 +182,42 @@ git log --oneline
 
 ---
 
-## GitHub Actions CI/CD Optimization
+### 🎯 Demo Target Scope & Coverage
 
-### 🐋 Docker Container Optimization (Fastest - ~1 minute)
+> [!NOTE]
+> This project focuses on high-impact scenarios to demonstrate technical patterns rather than 100% feature coverage.
 
-The GitHub Actions workflow now uses **Microsoft's free Docker container** with Playwright pre-installed. This eliminates slow browser installation steps entirely.
+#### 1. Authentication State & Visual Regression Matrix
+* **Multi-Persona Validation**: Dedicated coverage for `standard`, `problem`, `performance_glitch`, and `error` users.
+* **Visual Regression Detection**: Programmatic detection of identical product images by comparing image buffers and `src` attributes.
+* **Validation Rules**: SVG icon presence and field-level error message verification.
 
-**What's optimized:**
-- ✅ No Node setup required (Docker handles it)
-- ✅ No browser installation (pre-installed in image)
-- ✅ All browsers ready (Chromium, Firefox, WebKit)
-- ✅ Build time: **~1 minute** (vs. 5-8 minutes before)
-
-**Current workflow configuration:**
-```yaml
-container:
-  image: mcr.microsoft.com/playwright:v1.59.1-jammy
-
-env:
-  HOME: /root  # Firefox sandbox permission fix
-
-steps:
-  - uses: actions/checkout@v4
-  - run: npm ci
-  - run: npx playwright test
-```
-
-**Playwright version compatibility:** The Docker image version (`v1.59.1`) must match your project's Playwright version in `package.json`. Update both if you upgrade Playwright.
-
-### Browser Testing Coverage
-
-With the Docker approach, your CI automatically tests across all browsers:
-- ✅ **Chromium** - Full support
-- ✅ **Firefox** - Full support (requires `HOME=/root` env var)
-- ✅ **WebKit** - Full support
-
-To test locally with all browsers:
-```bash
-npx playwright install
-npx playwright test
-```
-
-To test with a specific browser:
-```bash
-npx playwright test --project=chromium
-npx playwright test --project=firefox
-npx playwright test --project=webkit
-```
+#### 2. Stateful Funnel & Data Integrity Validation
+* **Lifecycle Simulation**: Additive cart state management and shipping data entry.
+* **Integrity Checks**: Verification of financial totals, tax calculations, and state persistence through the checkout funnel.
 
 ---
 
-## Test Organization & Architecture
+## 🖼️ Visual Preview
+
+The following captures illustrate the framework executing across core stateful journeys.
+
+| **1. Authentication State** | **2. Inventory Management** | **3. Stateful Checkout** |
+| :--- | :--- | :--- |
+| !Login | !Inventory | !Cart |
+| **Identity Layer:** Validates requirements across multiple persona matrices. | **Product Inventory:** Grid state management and visual discrepancy detection. | **Validation Funnel:** Real-time calculation of item parity and secure order finalization. |
+
+---
+
+## Browser Installation (Legacy Approach)
+
+> **Note:** This is the manual approach. The current pipeline uses the Docker optimization described above.
+
+```bash
+npx playwright install chromium --with-deps
+```
 
 ### Page Object Model (POM) Pattern
-
-All tests follow the **Page Object Model** pattern for maintainability and reusability.
 
 **Structure:**
 ```
@@ -313,10 +260,10 @@ Every test in this repository follows a structured AI-assisted workflow:
 
 | Agent | Role | Contribution to this Suite |
 | :--- | :--- | :--- |
-| **Planner** | **Discovery** | Analyzed the Sauce Demo site to generate the markdown specs found in `/specs`. |
-| **Generator** | **Scaffolding** | Read the markdown specs and generated the initial Page Object code and `.spec.ts` files. |
-| **Architecture** | **Governance** | Validated that all generated code strictly follows our POM and directory standards. |
-| **Healer** | **Maintenance** | (Optional) Automatically diagnoses CI failures and pushes fixes for broken selectors. |
+| **Planner** | **Spec Discovery** | Generated the primary test plans in `specs/login.md` and `specs/checkout-flow.md`. |
+| **Generator** | **Scaffolding** | Transformed markdown specs into functional TypeScript test suites. |
+| **Architecture** | **POM Enforcement** | Audited the suite to ensure strict isolation of UI interactions from validation logic. |
+| **Healer** | **Selector Hardening** | Refactored selectors to use Playwright standard locators (`getByRole`, `getByText`, `getByTestId`) with resilient fallbacks. |
 
 ### Interacting with the Agents
 
