@@ -10,7 +10,7 @@ providers:
   #     timeout: 20000
   - id: file://groqProvider.js
     config:
-      model: "groq/compound-mini"
+      model: "llama-3.1-8b-instant"
 
 defaultTest:
   assert:
@@ -20,6 +20,6 @@ defaultTest:
         # id: google:gemini-3.5-flash
         id: file://groqProvider.js
         config:
-          model: "groq/compound-mini"
+          model: "llama-3.1-8b-instant"
 
 tests: golden-dataset.csv

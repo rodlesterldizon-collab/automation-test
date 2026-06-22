@@ -9,7 +9,7 @@ class GroqCustomProvider {
     // Initialize the Groq client
     this.groq = new Groq({ apiKey });
     // Use the model provided in config or fallback to groq/compound-mini
-    this.modelName = options.config?.model || "groq/compound-mini";
+    this.modelName = options.config?.model || "llama-3.1-8b-instant";
   }
 
   id() {

@@ -2,7 +2,15 @@
 
 [![Playwright Tests](https://img.shields.io/github/actions/workflow/status/rodlesterldizon-collab/automation-test/playwright.yml?style=for-the-badge&logo=github-actions&label=CI%20Status)](https://github.com/rodlesterldizon-collab/automation-test/actions/workflows/playwright.yml) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) ![Playwright](https://img.shields.io/badge/Playwright-45BA4B?style=for-the-badge&logo=playwright&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2671E5?style=for-the-badge&logo=githubactions&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-This repository serves as a **Senior-Level E2E Automation Infrastructure & AI Showcase**. It demonstrates a robust, scalable, and self-healing engineering environment designed for enterprise-grade software delivery. This framework utilizes a mock e-commerce frontend (SauceDemo) and a mock API backend (ReqRes.in) to demonstrate advanced pipeline architecture, architectural governance, multi-layer testing (UI & API), and agentic workflows.
+This repository serves as a **Senior-Level E2E Automation Infrastructure & AI Showcase**. 
+
+It demonstrates a robust, scalable, and self-healing engineering environment designed for enterprise-grade software delivery. This framework utilizes a mock e-commerce frontend (SauceDemo) and a mock API backend (ReqRes.in) to demonstrate advanced pipeline architecture, architectural governance, multi-layer testing (UI & API), and agentic workflows.
+
+### 💼 Business Value & Engineering ROI
+As a Senior Engineer, my primary focus isn't just writing tests—it's building infrastructure that accelerates delivery and reduces costs. This framework achieves that by:
+1. **Eliminating Flakiness:** Implementing a strict "Defense-in-Depth" selector strategy and self-healing locators to eliminate CI/CD false positives.
+2. **Accelerating Pipelines:** Optimizing GitHub Actions with Dockerized Playwright runners to achieve lightning-fast ~1-minute execution times.
+3. **Validating AI Models:** Implementing robust, programmatic LLM testing to ensure the accuracy and groundedness of AI features before they reach production.
 
 Created and maintained by **Rod Lester Dizon**.
 
@@ -10,13 +18,13 @@ Created and maintained by **Rod Lester Dizon**.
 
 ## 🤖 The AI-Augmented Engineering Lifecycle
 
-This infrastructure is a result of a multi-stage **Agentic Workflow**, demonstrating how AI agents collaborate with senior engineers to build enterprise-grade automation.
+While I personally designed the core architecture, testing strategy, strict POM rules, and CI/CD logic, I utilized a multi-stage **Agentic Workflow using MCP (Model Context Protocol)** to rapidly scaffold the boilerplate. This demonstrates how Senior SDETs can orchestrate AI agents to achieve 10x engineering velocity on the SauceDemo UI.
 
-1.  **Spec Discovery (The Planner):** The process began with an Agentic Planner that scanned the dummy target to autonomously generate comprehensive test plans, resulting in the `specs/login.md` and `specs/checkout-flow.md` files.
-2.  **Automated Scaffolding (The Generator):** These specs were fed into a Generator agent to produce the initial test implementations and baseline Page Objects.
+1.  **Spec Discovery (The Planner MCP):** The process began with an Agentic Planner that scanned the SauceDemo target to autonomously generate comprehensive test plans, resulting in the `specs/login.md` and `specs/checkout-flow.md` files.
+2.  **Automated Scaffolding (The Generator MCP):** These specs were fed into a Generator agent to produce the initial test implementations and baseline Page Objects.
 3.  **Human-in-the-Loop Refinement:** As part of senior-level oversight, manual interventions were made to correct logic discrepancies and edge cases that the initial AI generation miscalculated or overlooked.
 4.  **Architectural Alignment (The Architecture Agent):** A dedicated Architecture Agent was engaged to refactor and enforce strict **Page Object Model (POM)** standards, ensuring a clean separation of concerns.
-5.  **Infrastructure Hardening (The Healer):** Finally, the Healer agent was utilized to optimize selector strategies. It refactored the suite to prioritize Playwright's recommended locators (`getByRole`, `getByLabel`, `getByTestId`) with a resilient fallback to class-based selectors, ensuring stability before re-engaging the healing loop for future CI failures.
+5.  **Infrastructure Hardening (The Healer MCP):** Finally, the Healer agent was utilized to optimize selector strategies on the SauceDemo frontend. It refactored the suite to prioritize Playwright's recommended locators (`getByRole`, `getByLabel`, `getByTestId`) with a resilient fallback to class-based selectors, ensuring stability before re-engaging the healing loop for future CI failures.
 
 ### 🛠️ Self-Healing & Selector Resiliency
 The **Playwright Test Healer** doesn't just fix broken code; it enforces a strict selector hierarchy. It prioritizes `data-testid` and user-facing attributes, establishing a secondary fallback to CSS classes only if standard locators fail, effectively creating a "defense-in-depth" selector strategy.
@@ -84,12 +92,19 @@ npm run test:llm
 
 ## 🧠 LLM API Evaluation (Promptfoo)
 
-This framework includes automated evaluations for Large Language Models (LLMs) using **Promptfoo**. We evaluate the model's accuracy and groundedness against a "Golden Dataset" of prompts and expected answers.
+Located in the `tests/api-llm/` directory, this framework includes automated evaluations for Large Language Models (LLMs) using **Promptfoo**.
+
+### Core Configuration & Golden Dataset
+- **`tests/api-llm/golden-dataset.csv`**: The "Golden Dataset" containing a rigorous set of prompts and expected answers. We use this to evaluate the model's accuracy and groundedness programmatically.
+- **`tests/api-llm/promptfooconfig.yaml`**: The primary configuration file orchestrating the Promptfoo evaluation loop. It dictates the providers being tested and the assertion rubrics used for grading.
 
 ### Groq vs. Gemini
-By default, the testing suite is configured to evaluate **Groq** (`groq/compound-mini`) due to its lightning-fast inference and generous free-tier rate limits, which are ideal for rapid CI/CD execution without hitting `429 Too Many Requests` errors. 
+By default, the testing suite is configured to evaluate **Groq** (`llama-3.1-8b-instant`) due to its lightning-fast inference and generous free-tier rate limits, which are ideal for rapid CI/CD execution without hitting `429 Too Many Requests` errors. 
 
 The original **Google Gemini** (`google:gemini-3.5-flash`) implementation remains in the codebase as a fallback but is heavily commented out in the `tests/api-llm/promptfooconfig.yaml` file to prevent rate-limiting during bulk Promptfoo evaluations.
+
+#### Custom Provider Engineering
+To integrate Groq natively with Promptfoo's evaluation loop, I engineered a custom JavaScript provider adapter (`tests/api-llm/groqProvider.js`). This custom script interfaces directly with the `groq-sdk`, proving the framework's extensibility to handle complex internal tools and unsupported third-party APIs.
 
 ### How to use it:
 1. Ensure the Groq SDK is installed: `npm install groq-sdk`
@@ -210,6 +225,7 @@ git log --oneline
 > This project focuses on high-impact scenarios to demonstrate technical patterns rather than 100% feature coverage.
 
 #### 1. API Testing Framework & Security (ReqRes)
+Located in the `tests/api/` directory (specifically driven by `reqres-auth.spec.ts` and `reqres-users.spec.ts`), this suite handles backend validations:
 * **Comprehensive Endpoints:** 50 strict API tests validating GET, POST, PUT, PATCH, and DELETE REST operations.
 * **Security & Auth Injection:** Demonstrates dynamic API Key (`x-api-key`) injection via Playwright configuration and GitHub Secrets.
 * **Self-Healing API Resilience:** Dynamically handles third-party API rate limits (HTTP 429) by gracefully skipping test assertions instead of crashing the CI pipeline, demonstrating robust enterprise-grade test resiliency. *(Note: A SKIP is currently added to the API tests to prevent rate limits, so it is just testing 4 endpoints right now. However, previous runs of the exact same tests in CI/CD passed successfully when we remove the skip and the ReqRes App rate limits are not exceeded).*
@@ -237,14 +253,6 @@ The following captures illustrate the framework executing across core stateful j
 | **Identity Layer:** Validates requirements across multiple persona matrices. | **Product Inventory:** Grid state management and visual discrepancy detection. | **Validation Funnel:** Real-time calculation of item parity and secure order finalization. |
 
 ---
-
-## Browser Installation (Legacy Approach)
-
-> **Note:** This is the manual approach. The current pipeline uses the Docker optimization described above.
-
-```bash
-npx playwright install chromium --with-deps
-```
 
 ### Page Object Model (POM) Pattern
 
