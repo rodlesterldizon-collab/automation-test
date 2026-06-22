@@ -2,7 +2,7 @@
 
 [![Playwright Tests](https://img.shields.io/github/actions/workflow/status/rodlesterldizon-collab/automation-test/playwright.yml?style=for-the-badge&logo=github-actions&label=CI%20Status)](https://github.com/rodlesterldizon-collab/automation-test/actions/workflows/playwright.yml) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) ![Playwright](https://img.shields.io/badge/Playwright-45BA4B?style=for-the-badge&logo=playwright&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2671E5?style=for-the-badge&logo=githubactions&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-This repository serves as a **Senior-Level E2E  Automation Infrastructure & AI Showcase**. It demonstrates a robust, scalable, and self-healing engineering environment designed for enterprise-grade software delivery. This framework utilizes a mock e-commerce frontend exclusively as a **"dummy target"** to demonstrate advanced pipeline architecture, architectural governance, and agentic workflows.
+This repository serves as a **Senior-Level E2E Automation Infrastructure & AI Showcase**. It demonstrates a robust, scalable, and self-healing engineering environment designed for enterprise-grade software delivery. This framework utilizes a mock e-commerce frontend (SauceDemo) and a mock API backend (ReqRes.in) to demonstrate advanced pipeline architecture, architectural governance, multi-layer testing (UI & API), and agentic workflows.
 
 Created and maintained by **Rod Lester Dizon**.
 
@@ -21,13 +21,14 @@ This infrastructure is a result of a multi-stage **Agentic Workflow**, demonstra
 ### 🛠️ Self-Healing & Selector Resiliency
 The **Playwright Test Healer** doesn't just fix broken code; it enforces a strict selector hierarchy. It prioritizes `data-testid` and user-facing attributes, establishing a secondary fallback to CSS classes only if standard locators fail, effectively creating a "defense-in-depth" selector strategy.
 
-##  Dockerized CI/CD Optimization
+## 🚀 CI/CD Optimization & Pipeline Controls
 
-The pipeline is engineered for performance, achieving **~1-minute build times** in GitHub Actions.
+The pipeline is engineered for performance, achieving **~1-minute build times** in GitHub Actions with advanced pipeline controls.
 
+- **Multi-Job Serial Execution:** The workflow leverages `needs: [api-tests]` to ensure that API tests pass perfectly before UI tests begin, explicitly demonstrating job dependency management.
+- **Workflow Dispatch Toggles:** Gives engineers manual control to conditionally trigger `api`, `ui`, or `all` suites directly from the GitHub UI, bypassing redundant runs.
 - **Binary Bypass:** Utilizes Microsoft’s `playwright:jammy` Docker image, eliminating the need for slow browser binary downloads during runtime.
 - **Environment Parity:** Dockerized runners ensure identical execution contexts across local, staging, and production-grade CI environments.
-- **Sharded Execution:** Configured for horizontal scaling to handle large-scale regression suites.
 
 ## 🏗️ Architectural Governance & Selector Resiliency
 
@@ -187,7 +188,14 @@ git log --oneline
 > [!NOTE]
 > This project focuses on high-impact scenarios to demonstrate technical patterns rather than 100% feature coverage.
 
-#### 1. Authentication State & Visual Regression Matrix
+#### 1. API Testing Framework & Security (ReqRes)
+* **Comprehensive Endpoints:** 50 strict API tests validating GET, POST, PUT, PATCH, and DELETE REST operations.
+* **Security & Auth Injection:** Demonstrates dynamic API Key (`x-api-key`) injection via Playwright configuration and GitHub Secrets.
+* **Self-Healing API Resilience:** Dynamically handles third-party API rate limits (HTTP 429) by gracefully skipping test assertions instead of crashing the CI pipeline, demonstrating robust enterprise-grade test resiliency. *(Note: A SKIP is currently added to the API tests to prevent rate limits, so it is just testing 4 endpoints right now. However, previous runs of the exact same tests in CI/CD passed successfully when we remove the skip and the ReqRes App rate limits are not exceeded).*
+* **Edge-Case Resilience:** Dedicated negative scenarios evaluating the backend's handling of malformed payloads, non-existent resources, negative pagination math, extreme string lengths, and unauthenticated endpoints.
+* **Strong Typing:** End-to-end TypeScript interfaces mapping all request payloads and response signatures.
+
+#### 2. Authentication State & Visual Regression Matrix (SauceDemo)
 * **Multi-Persona Validation**: Dedicated coverage for `standard`, `problem`, `performance_glitch`, and `error` users.
 * **Visual Regression Detection**: Programmatic detection of identical product images by comparing image buffers and `src` attributes.
 * **Validation Rules**: SVG icon presence and field-level error message verification.

@@ -27,5 +27,20 @@
   },
   "invalidLogin": {
     "email": "peter@klaven"
+  },
+  "extremeLengthUser": {
+    "name": "a very long name string that might exceed standard database column lengths if not properly validated which is a common edge case in api testing",
+    "job": "a very long job description string that might exceed standard database column lengths if not properly validated which is a common edge case in api testing"
+  },
+  "numericStringUser": {
+    "name": "12345",
+    "job": "98765"
+  },
+  "emptyUpdateUser": {
+    "name": "",
+    "job": ""
+  },
+  "specialCharPatch": {
+    "name": "!@#$%^&*()"
   }
 }
