@@ -1,0 +1,31 @@
+{
+  "validCreateUser": {
+    "name": "morpheus",
+    "job": "leader"
+  },
+  "validUpdateUser": {
+    "name": "morpheus",
+    "job": "zion resident"
+  },
+  "validPatchUser": {
+    "name": "neo",
+    "job": "the one"
+  },
+  "invalidCreateUser": {
+    "name": ""
+  },
+  "validRegister": {
+    "email": "eve.holt@reqres.in",
+    "password": "pistol"
+  },
+  "invalidRegister": {
+    "email": "sydney@fife"
+  },
+  "validLogin": {
+    "email": "eve.holt@reqres.in",
+    "password": "cityslicka"
+  },
+  "invalidLogin": {
+    "email": "peter@klaven"
+  }
+}

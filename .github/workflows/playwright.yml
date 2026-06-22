@@ -4,6 +4,17 @@ on:
     branches: [ main, master, test-playwright-docker ]
   pull_request:
     branches: [ main, master ]
+  workflow_dispatch:
+    inputs:
+      test_suite:
+        description: 'Which test suite to run?'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - api
+          - ui
 
 permissions:
   contents: write
@@ -31,8 +42,15 @@ jobs:
     - name: Install Project Dependencies
       run: npm ci
 
-    - name: Run Playwright tests
-      run: npx playwright test
+    - name: Run API Tests
+      if: ${{ github.event_name != 'workflow_dispatch' || inputs.test_suite == 'all' || inputs.test_suite == 'api' }}
+      env:
+        REQRES_API_KEY: ${{ secrets.REQRES_API_KEY }}
+      run: npm run test:api
+
+    - name: Run UI Tests
+      if: ${{ success() && (github.event_name != 'workflow_dispatch' || inputs.test_suite == 'all' || inputs.test_suite == 'ui') }}
+      run: npm run test:cli
 
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}

@@ -36,17 +36,30 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
+      name: 'api',
+      testMatch: /.*api\/.*\.spec\.ts/,
+      use: {
+        baseURL: 'https://reqres.in/api/',
+        extraHTTPHeaders: {
+          'x-api-key': process.env.REQRES_API_KEY || 'free_user_3FV2fJGmFELswbMj91CZsT6vXxA',
+        },
+      },
+    },
+    {
       name: 'chromium',
+      testIgnore: /.*api\/.*\.spec\.ts/,
       use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'firefox',
+      testIgnore: /.*api\/.*\.spec\.ts/,
       use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'webkit',
+      testIgnore: /.*api\/.*\.spec\.ts/,
       use: { ...devices['Desktop Safari'] },
     },
 
