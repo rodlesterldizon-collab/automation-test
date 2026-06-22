@@ -21,40 +21,54 @@ permissions:
   pull-requests: write
 
 jobs:
-  test:
+  api-tests:
+    name: Run API Tests
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.test_suite == 'all' || inputs.test_suite == 'api' }}
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    
-    # 🐋 Using the free Microsoft container with Playwright pre-installed
     container:
       image: mcr.microsoft.com/playwright:v1.59.1-jammy
-
-    # 🔑 Firefox permission fix: Set HOME=/root so Firefox owns its sandbox
-    # 🚀 Opt-in to Node 24 for actions to resolve deprecation warnings
     env:
       HOME: /root
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-
     - name: Install Project Dependencies
       run: npm ci
-
     - name: Run API Tests
-      if: ${{ github.event_name != 'workflow_dispatch' || inputs.test_suite == 'all' || inputs.test_suite == 'api' }}
       env:
         REQRES_API_KEY: ${{ secrets.REQRES_API_KEY }}
       run: npm run test:api
-
-    - name: Run UI Tests
-      if: ${{ success() && (github.event_name != 'workflow_dispatch' || inputs.test_suite == 'all' || inputs.test_suite == 'ui') }}
-      run: npm run test:cli
-
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
-        name: playwright-report
+        name: playwright-report-api
+        path: playwright-report/
+        retention-days: 30
+
+  ui-tests:
+    name: Run UI Tests
+    needs: [api-tests]
+    # Use !failure() so this job runs if api-tests is skipped, but stops if api-tests fails
+    if: ${{ always() && !failure() && !cancelled() && (github.event_name != 'workflow_dispatch' || inputs.test_suite == 'all' || inputs.test_suite == 'ui') }}
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.59.1-jammy
+    env:
+      HOME: /root
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Install Project Dependencies
+      run: npm ci
+    - name: Run UI Tests
+      run: npm run test:cli
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: playwright-report-ui
         path: playwright-report/
         retention-days: 30
