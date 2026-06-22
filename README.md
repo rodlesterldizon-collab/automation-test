@@ -50,6 +50,7 @@ The codebase adheres to strict engineering standards to ensure long-term sustain
 - **Architecture:** Page Object Model (POM)
 - **CI/CD:** GitHub Actions with Dockerized Runners
 - **Reporting:** Playwright HTML Reports with Trace Viewer & Screenshot artifacts
+- **LLM Evaluation:** Promptfoo (for testing API accuracy and groundedness)
 - **Logic:** Centralized Configuration & Visual Bug Detection Utilities
 
 ---
@@ -63,10 +64,10 @@ The codebase adheres to strict engineering standards to ensure long-term sustain
 ### Installation
 
 ```bash
-# Install dependencies
+# Install dependencies (including groq-sdk for LLM evaluation)
 npm install
 
-# Run all tests locally
+# Run all UI tests locally
 npx playwright test
 
 # Run tests in UI mode
@@ -74,7 +75,27 @@ npm run test:ui
 
 # Run tests in debug mode
 npx playwright test --debug
+
+# Run LLM Evaluation tests
+npm run test:llm
 ```
+
+---
+
+## 🧠 LLM API Evaluation (Promptfoo)
+
+This framework includes automated evaluations for Large Language Models (LLMs) using **Promptfoo**. We evaluate the model's accuracy and groundedness against a "Golden Dataset" of prompts and expected answers.
+
+### Groq vs. Gemini
+By default, the testing suite is configured to evaluate **Groq** (`groq/compound-mini`) due to its lightning-fast inference and generous free-tier rate limits, which are ideal for rapid CI/CD execution without hitting `429 Too Many Requests` errors. 
+
+The original **Google Gemini** (`google:gemini-3.5-flash`) implementation remains in the codebase as a fallback but is heavily commented out in the `tests/api-llm/promptfooconfig.yaml` file to prevent rate-limiting during bulk Promptfoo evaluations.
+
+### How to use it:
+1. Ensure the Groq SDK is installed: `npm install groq-sdk`
+2. Add your Groq API key to the `.env` file: `GROQ_API_KEY=gsk_your_key_here`
+3. Run the evaluation: `npm run test:llm`
+4. The test evaluates the outputs and uses the Groq model itself as the "Judge" to grade its own answers based on an LLM rubric.
 
 ---
 
