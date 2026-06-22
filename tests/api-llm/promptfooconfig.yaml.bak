@@ -1,0 +1,15 @@
+description: "LLM API Evaluation using Puter and DeepSeek R1"
+
+prompts:
+  - "{{prompt}}"
+
+providers:
+  - file://puterProvider.js
+
+defaultTest:
+  assert:
+    - type: llm-rubric
+      value: "Evaluate if the model output is at least 80% (0.8) accurate and grounded compared to the expected answer. Expected: {{expected}}"
+      provider: file://puterProvider.js
+
+tests: golden-dataset.csv

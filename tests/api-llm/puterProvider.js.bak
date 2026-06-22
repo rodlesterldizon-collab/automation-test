@@ -1,0 +1,49 @@
+const { chromium } = require('@playwright/test');
+
+class PuterProvider {
+  constructor(options) {
+    this.providerId = options.id || 'puter-deepseek';
+    this.model = options.config?.model || 'deepseek/deepseek-r1-0528';
+  }
+
+  id() {
+    return this.providerId;
+  }
+
+  async callApi(prompt) {
+    let browser, context, page;
+    try {
+      browser = await chromium.launch();
+      context = await browser.newContext();
+      page = await context.newPage();
+      
+      // Load Puter script
+      await page.goto('about:blank');
+      await page.addScriptTag({ url: 'https://js.puter.com/v2/' });
+      await page.waitForFunction(() => window.puter !== undefined);
+      
+      // Call puter.ai.chat
+      const response = await page.evaluate(async ({ text, model }) => {
+        // Deepseek sometimes returns objects or strings, ensure we return text
+        const res = await window.puter.ai.chat(text, { model });
+        if (typeof res === 'object' && res.message && res.message.content) {
+            return res.message.content;
+        }
+        return res;
+      }, { text: prompt, model: this.model });
+      
+      await browser.close();
+      
+      return {
+        output: response,
+      };
+    } catch (err) {
+      if (browser) await browser.close();
+      return {
+        error: `Puter API error: ${err.toString()}`,
+      };
+    }
+  }
+}
+
+module.exports = PuterProvider;

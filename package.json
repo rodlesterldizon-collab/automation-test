@@ -6,14 +6,17 @@
   "scripts": {
     "test:ui": "playwright test --ui",
     "test:cli": "playwright test --project=chromium",
-    "test:api": "playwright test --project=api"
+    "test:api": "playwright test --project=api",
+    "test:llm": "promptfoo eval -c tests/api-llm/promptfooconfig.yaml -o report.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@heyputer/puter.js": "^2.5.4",
     "@playwright/test": "^1.59.1",
-    "@types/node": "^24.0.0"
+    "@types/node": "^24.0.0",
+    "promptfoo": "^0.121.17"
   }
 }

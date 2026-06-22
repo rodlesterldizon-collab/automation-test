@@ -1,0 +1,321 @@
+{
+  "evalId": "eval-mgE-2026-06-22T18:48:19",
+  "results": {
+    "version": 3,
+    "timestamp": "2026-06-22T18:48:19.471Z",
+    "prompts": [
+      {
+        "id": "effa18501e44aafd9bc42a2f64ffc9b6350f94025520ca2ed382f9bdc4b6e982",
+        "raw": "{{prompt}}",
+        "label": "{{prompt}}",
+        "provider": "google:gemini-3.5-flash",
+        "metrics": {
+          "score": 1,
+          "testPassCount": 1,
+          "testFailCount": 0,
+          "testErrorCount": 0,
+          "assertPassCount": 1,
+          "assertFailCount": 0,
+          "totalLatencyMs": 29,
+          "tokenUsage": {
+            "prompt": 0,
+            "completion": 0,
+            "cached": 110,
+            "total": 110,
+            "numRequests": 0,
+            "completionDetails": {
+              "reasoning": 95,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            },
+            "assertions": {
+              "total": 488,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 488,
+              "numRequests": 0,
+              "completionDetails": {
+                "reasoning": 0,
+                "acceptedPrediction": 0,
+                "rejectedPrediction": 0,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0
+              }
+            }
+          },
+          "namedScores": {},
+          "namedScoresCount": {},
+          "namedScoreWeights": {},
+          "cost": 0
+        }
+      }
+    ],
+    "results": [
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 488,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 488,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "assertion": {
+                "type": "llm-rubric",
+                "value": "Evaluate if the model output is at least 80% (0.8) accurate and grounded compared to the expected answer. Expected: {{expected}}",
+                "provider": {
+                  "id": "google:gemini-3.5-flash"
+                }
+              },
+              "pass": true,
+              "score": 1,
+              "reason": "The output states '2 + 2 = 4', which is mathematically correct and contains the expected answer '4', representing 100% accuracy.",
+              "tokensUsed": {
+                "total": 488,
+                "prompt": 0,
+                "completion": 0,
+                "cached": 488,
+                "numRequests": 0,
+                "completionDetails": {
+                  "reasoning": 209,
+                  "acceptedPrediction": 0,
+                  "rejectedPrediction": 0
+                }
+              },
+              "metadata": {
+                "renderedGradingPrompt": "[{\"role\":\"system\",\"content\":\"You are grading output according to a user-specified rubric. If the statement in the rubric is true, then the output passes the test. You respond with a JSON object with this structure: {reason: string, pass: boolean, score: number}\\n\\nExamples:\\n\\n<Output>Hello world</Output>\\n<Rubric>Content contains a greeting</Rubric>\\n{\\\"reason\\\": \\\"the content contains the word 'Hello'\\\", \\\"pass\\\": true, \\\"score\\\": 1.0}\\n\\n<Output>Avast ye swabs, repel the invaders!</Output>\\n<Rubric>Does not speak like a pirate</Rubric>\\n{\\\"reason\\\": \\\"'avast ye' is a common pirate term\\\", \\\"pass\\\": false, \\\"score\\\": 0.0}\"},{\"role\":\"user\",\"content\":\"<Output>\\n2 + 2 = 4\\n</Output>\\n<Rubric>\\nEvaluate if the model output is at least 80% (0.8) accurate and grounded compared to the expected answer. Expected: 4\\n</Rubric>\"}]",
+                "renderedAssertionValue": "Evaluate if the model output is at least 80% (0.8) accurate and grounded compared to the expected answer. Expected: 4"
+              }
+            }
+          ]
+        },
+        "id": "337bc287-d764-4281-bc04-5ead5c0dae68",
+        "latencyMs": 29,
+        "namedScores": {},
+        "prompt": {
+          "raw": "What is 2+2?",
+          "label": "{{prompt}}",
+          "config": {}
+        },
+        "promptId": "effa18501e44aafd9bc42a2f64ffc9b6350f94025520ca2ed382f9bdc4b6e982",
+        "promptIdx": 0,
+        "provider": {
+          "id": "google:gemini-3.5-flash",
+          "label": ""
+        },
+        "response": {
+          "output": "2 + 2 = 4",
+          "tokenUsage": {
+            "cached": 110,
+            "total": 110,
+            "numRequests": 0,
+            "completionDetails": {
+              "reasoning": 95,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0
+            }
+          },
+          "raw": {
+            "candidates": [
+              {
+                "content": {
+                  "parts": [
+                    {
+                      "text": "2 + 2 = 4",
+                      "thoughtSignature": "EsYCCsMCAQw51sfuqEcj4oxf8xcPRa+f0gDkBOU8ubF/e5pdejXGCWphMPKNross/dEBqPJlDQm6fqTJ/yhUnZYDqwhXSU7kt+hIoaLiJBk/8lh/OliYNS7EHU/BhHbA/a+/V9suUyrsfaigIDbKu47KmPnv+9+Imm6Rmd5da5fv/3Q1hu2FCbbA0x2lJe3dOkEd1Lb48qI/rZFZZDtNAWtBovsiwXbtEgew437iw9fDJgx7VieE9u577NqEyiotGmQJ6tCInOs3DDyGnIEGU5/u7U4lk7PiAk1mR1cPtSyZ0ulSFe7Uvw4tO0sykDrkIHncGRD61yK4OYmGt2KSUQp59rkfwWhfbrZylJcT885PIq28lvq3wzAVueLwN9Ee7TPDIstk/VzzEPOkmzsxdVJS3KC3ZVnFfJeIm7LfjF5sA8omz75Wnlc="
+                    }
+                  ],
+                  "role": "model"
+                },
+                "finishReason": "STOP",
+                "index": 0
+              }
+            ],
+            "usageMetadata": {
+              "promptTokenCount": 8,
+              "candidatesTokenCount": 7,
+              "totalTokenCount": 110,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 8
+                }
+              ],
+              "thoughtsTokenCount": 95,
+              "serviceTier": "standard"
+            },
+            "modelVersion": "gemini-3.5-flash",
+            "responseId": "bIA5ar7uBcmY-8YP58fN0Ag"
+          },
+          "cached": true,
+          "metadata": {}
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "vars": {
+            "prompt": "What is 2+2?",
+            "expected": "4"
+          },
+          "assert": [
+            {
+              "type": "llm-rubric",
+              "value": "Evaluate if the model output is at least 80% (0.8) accurate and grounded compared to the expected answer. Expected: {{expected}}",
+              "provider": {
+                "id": "google:gemini-3.5-flash"
+              }
+            }
+          ],
+          "options": {},
+          "description": "Row #1",
+          "metadata": {}
+        },
+        "testIdx": 0,
+        "tokenUsage": {
+          "prompt": 0,
+          "completion": 0,
+          "cached": 110,
+          "total": 110,
+          "numRequests": 0,
+          "completionDetails": {
+            "reasoning": 95,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 488,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 488,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "prompt": "What is 2+2?",
+          "expected": "4"
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      }
+    ],
+    "stats": {
+      "successes": 1,
+      "failures": 0,
+      "errors": 0,
+      "tokenUsage": {
+        "prompt": 0,
+        "completion": 0,
+        "cached": 110,
+        "total": 110,
+        "numRequests": 0,
+        "completionDetails": {
+          "reasoning": 95,
+          "acceptedPrediction": 0,
+          "rejectedPrediction": 0,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0
+        },
+        "assertions": {
+          "total": 488,
+          "prompt": 0,
+          "completion": 0,
+          "cached": 488,
+          "numRequests": 0,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          }
+        }
+      },
+      "durationMs": 118,
+      "evaluationDurationMs": 118
+    }
+  },
+  "config": {
+    "tags": {},
+    "description": "LLM API Evaluation using Gemini",
+    "prompts": [
+      "{{prompt}}"
+    ],
+    "providers": [
+      {
+        "id": "google:gemini-3.5-flash"
+      }
+    ],
+    "tests": [
+      {
+        "vars": {
+          "prompt": "What is 2+2?",
+          "expected": "4"
+        },
+        "assert": [],
+        "options": {},
+        "description": "Row #1"
+      }
+    ],
+    "env": {},
+    "defaultTest": {
+      "assert": [
+        {
+          "type": "llm-rubric",
+          "value": "Evaluate if the model output is at least 80% (0.8) accurate and grounded compared to the expected answer. Expected: {{expected}}",
+          "provider": {
+            "id": "google:gemini-3.5-flash"
+          }
+        }
+      ],
+      "vars": {},
+      "options": {},
+      "metadata": {}
+    },
+    "outputPath": [
+      "promptfoo-results.json"
+    ],
+    "extensions": [],
+    "metadata": {},
+    "evaluateOptions": {}
+  },
+  "shareableUrl": null,
+  "metadata": {
+    "promptfooVersion": "0.121.17",
+    "nodeVersion": "v24.15.0",
+    "platform": "darwin",
+    "arch": "x64",
+    "exportedAt": "2026-06-22T18:48:19.766Z",
+    "evaluationCreatedAt": "2026-06-22T18:48:19.471Z"
+  },
+  "vars": [
+    "prompt",
+    "expected"
+  ],
+  "runtimeOptions": {
+    "eventSource": "cli",
+    "showProgressBar": true,
+    "repeat": 1,
+    "maxConcurrency": 4,
+    "cache": true
+  }
+}

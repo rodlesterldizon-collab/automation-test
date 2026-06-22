@@ -1,0 +1,16 @@
+description: "LLM API Evaluation using Gemini"
+
+prompts:
+  - "{{prompt}}"
+
+providers:
+  - id: google:gemini-3.5-flash
+
+defaultTest:
+  assert:
+    - type: llm-rubric
+      value: "Evaluate if the model output is at least 80% (0.8) accurate and grounded compared to the expected answer. Expected: {{expected}}"
+      provider: 
+        id: google:gemini-3.5-flash
+
+tests: golden-dataset.csv

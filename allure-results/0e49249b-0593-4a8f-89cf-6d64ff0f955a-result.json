@@ -1,0 +1,59 @@
+{
+  "uuid": "0e49249b-0593-4a8f-89cf-6d64ff0f955a",
+  "historyId": "4d8faf7f250cf2737348d5bb913018ff",
+  "name": "LLM Eval: What is 2+2?",
+  "fullName": "LLM Eval: What is 2+2?",
+  "status": "passed",
+  "stage": "finished",
+  "descriptionHtml": "\n      <h3>Prompt</h3>\n      <pre>What is 2+2?</pre>\n      <h3>Expected Answer</h3>\n      <pre>4</pre>\n      <h3>Actual Output</h3>\n      <pre>2 + 2 = 4</pre>\n    ",
+  "steps": [
+    {
+      "name": "Prompt Evaluation Details",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1782154017280,
+      "stop": 1782154017282,
+      "steps": [
+        {
+          "name": "Evaluator Reason: The output states '2 + 2 = 4', which is mathematically correct and contains the expected answer '4', representing 100% accuracy.",
+          "status": "passed",
+          "stage": "finished",
+          "start": 1782154017280,
+          "stop": 1782154017281,
+          "steps": [],
+          "attachments": []
+        },
+        {
+          "name": "Score: 1",
+          "status": "passed",
+          "stage": "finished",
+          "start": 1782154017280,
+          "stop": 1782154017281,
+          "steps": [],
+          "attachments": []
+        }
+      ],
+      "attachments": [
+        {
+          "name": "Evaluation Details",
+          "source": "90fdf257-c335-4706-86b7-3777c75ea762-attachment.json",
+          "type": "application/json"
+        }
+      ]
+    }
+  ],
+  "attachments": [],
+  "parameters": [],
+  "labels": [
+    {
+      "name": "framework",
+      "value": "promptfoo"
+    },
+    {
+      "name": "suite",
+      "value": "LLM API Evaluation"
+    }
+  ],
+  "start": 1782154017280,
+  "stop": 1782154017285
+}

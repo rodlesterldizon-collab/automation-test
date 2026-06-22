@@ -1,0 +1,8 @@
+{
+  "Prompt": "What is 2+2?",
+  "Expected": "4",
+  "Actual": "2 + 2 = 4",
+  "Variance_Score": 1,
+  "Is_Grounded": true,
+  "Evaluator_Reason": "The output states '2 + 2 = 4', which is mathematically correct and contains the expected answer '4', representing 100% accuracy."
+}
