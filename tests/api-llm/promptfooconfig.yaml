@@ -5,6 +5,9 @@ prompts:
 
 providers:
   - id: google:gemini-3.5-flash
+    config:
+      # Shorten timeout to 20 seconds to fail fast on rate limits
+      timeout: 20000
 
 defaultTest:
   assert:

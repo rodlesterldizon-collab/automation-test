@@ -93,6 +93,13 @@ jobs:
         node-version: 24
     - name: Install Project Dependencies
       run: npm ci
+    - name: Cache Promptfoo
+      uses: actions/cache@v4
+      with:
+        path: ~/.promptfoo/cache
+        key: ${{ runner.os }}-promptfoo-${{ hashFiles('**/promptfooconfig.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-promptfoo-
     - name: Run LLM Tests
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
