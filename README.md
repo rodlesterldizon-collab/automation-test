@@ -2,7 +2,7 @@
 
 [![Playwright Tests](https://img.shields.io/github/actions/workflow/status/rodlesterldizon-collab/automation-test/playwright.yml?style=for-the-badge&logo=github-actions&label=CI%20Status)](https://github.com/rodlesterldizon-collab/automation-test/actions/workflows/playwright.yml) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) ![Playwright](https://img.shields.io/badge/Playwright-45BA4B?style=for-the-badge&logo=playwright&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2671E5?style=for-the-badge&logo=githubactions&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-This repository serves as a **Senior-Level E2E Automation Infrastructure & AI Showcase**. It demonstrates a robust, scalable, and self-healing engineering environment designed for enterprise-grade software delivery. This framework utilizes a mock e-commerce frontend exclusively as a **"dummy target"** to demonstrate advanced pipeline architecture, architectural governance, and agentic workflows.
+This repository serves as a **Senior-Level E2E  Automation Infrastructure & AI Showcase**. It demonstrates a robust, scalable, and self-healing engineering environment designed for enterprise-grade software delivery. This framework utilizes a mock e-commerce frontend exclusively as a **"dummy target"** to demonstrate advanced pipeline architecture, architectural governance, and agentic workflows.
 
 Created and maintained by **Rod Lester Dizon**.
 
