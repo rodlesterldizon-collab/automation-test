@@ -1,19 +1,25 @@
-description: "LLM API Evaluation using Gemini"
+description: "LLM API Evaluation using Groq"
 
 prompts:
   - "{{prompt}}"
 
 providers:
-  - id: google:gemini-3.5-flash
+  # - id: google:gemini-3.5-flash
+  #   config:
+  #     # Shorten timeout to 20 seconds to fail fast on rate limits
+  #     timeout: 20000
+  - id: file://groqProvider.js
     config:
-      # Shorten timeout to 20 seconds to fail fast on rate limits
-      timeout: 20000
+      model: "groq/compound-mini"
 
 defaultTest:
   assert:
     - type: llm-rubric
       value: "Evaluate if the model output is at least 80% (0.8) accurate and grounded compared to the expected answer. Expected: {{expected}}"
       provider: 
-        id: google:gemini-3.5-flash
+        # id: google:gemini-3.5-flash
+        id: file://groqProvider.js
+        config:
+          model: "groq/compound-mini"
 
 tests: golden-dataset.csv
