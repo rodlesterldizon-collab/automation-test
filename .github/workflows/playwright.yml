@@ -37,6 +37,8 @@ jobs:
       uses: actions/checkout@v4
     - name: Install Project Dependencies
       run: npm ci
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
     - name: Run API Tests
       env:
         REQRES_API_KEY: ${{ secrets.REQRES_API_KEY }}
@@ -65,6 +67,8 @@ jobs:
       uses: actions/checkout@v4
     - name: Install Project Dependencies
       run: npm ci
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
     - name: Run UI Tests
       run: npm run test:cli
     - uses: actions/upload-artifact@v4
