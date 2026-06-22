@@ -79,8 +79,7 @@ jobs:
     if: ${{ github.event_name != 'workflow_dispatch' || inputs.test_suite == 'all' || inputs.test_suite == 'llm' }}
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    env:
-      HOME: /root
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
