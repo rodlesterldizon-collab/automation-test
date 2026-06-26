@@ -77,6 +77,8 @@ npm install
 
 # Run all UI tests locally
 npx playwright test
+# Run all UI tests against Chromium
+npm run test:cli
 
 # Run tests in UI mode
 npm run test:ui
@@ -85,7 +87,8 @@ npm run test:ui
 npx playwright test --debug
 
 # Run LLM Evaluation tests
-npm run test:llm
+npm run test:llm:groq
+# or npm run test:llm:gemini
 ```
 
 ---
@@ -110,6 +113,7 @@ To integrate Groq natively with Promptfoo's evaluation loop, I engineered a cust
 1. Ensure the Groq SDK is installed: `npm install groq-sdk`
 2. Add your Groq API key to the `.env` file: `GROQ_API_KEY=gsk_your_key_here`
 3. Run the evaluation: `npm run test:llm`
+3. Run the evaluation: `npm run test:llm:groq`
 4. The test evaluates the outputs and uses the Groq model itself as the "Judge" to grade its own answers based on an LLM rubric.
 
 ---

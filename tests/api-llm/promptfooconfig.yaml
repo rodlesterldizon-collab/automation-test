@@ -16,5 +16,9 @@ defaultTest:
   assert:
     - type: llm-rubric
       value: "Evaluate if the model output is at least 80% (0.8) accurate and grounded compared to the expected answer. Expected: {{expected}}"
+      provider:
+        id: file://groqProvider.js
+        config:
+          model: "llama-3.1-8b-instant"
 
 tests: golden-dataset.csv

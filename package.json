@@ -7,7 +7,7 @@
     "test:ui": "playwright test --ui",
     "test:cli": "playwright test --project=chromium",
     "test:api": "playwright test --project=api",
-    "test:llm:groq": "promptfoo eval -c tests/api-llm/promptfooconfig.yaml -o report.html -j 1",
+    "test:llm:groq": "promptfoo eval -c tests/api-llm/promptfooconfig.yaml -o report.html -j 1 --providers file://groqProvider.js",
     "test:llm:gemini": "promptfoo eval -c tests/api-llm/promptfooconfig.yaml -o report.html -j 1 --providers google:gemini-3.5-flash"
   },
   "keywords": [],
