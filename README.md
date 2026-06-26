@@ -2,12 +2,12 @@
 
 [![Playwright Tests](https://img.shields.io/github/actions/workflow/status/rodlesterldizon-collab/automation-test/playwright.yml?style=for-the-badge&logo=github-actions&label=CI%20Status)](https://github.com/rodlesterldizon-collab/automation-test/actions/workflows/playwright.yml) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) ![Playwright](https://img.shields.io/badge/Playwright-45BA4B?style=for-the-badge&logo=playwright&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2671E5?style=for-the-badge&logo=githubactions&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-This repository serves as a **Senior-Level E2E Automation Infrastructure & AI Showcase**. 
+This repository is an **E2E Automation Infrastructure & AI Showcase**.
 
 It demonstrates a robust, scalable, and self-healing engineering environment designed for enterprise-grade software delivery. This framework utilizes a mock e-commerce frontend (SauceDemo) and a mock API backend (ReqRes.in) to demonstrate advanced pipeline architecture, architectural governance, multi-layer testing (UI & API), and agentic workflows.
 
 ### 💼 Business Value & Engineering ROI
-As a Senior Engineer, my primary focus isn't just writing tests—it's building infrastructure that accelerates delivery and reduces costs. This framework achieves that by:
+This framework is focused on building infrastructure that accelerates delivery and reduces costs by:
 1. **Eliminating Flakiness:** Implementing a strict "Defense-in-Depth" selector strategy and self-healing locators to eliminate CI/CD false positives.
 2. **Accelerating Pipelines:** Optimizing GitHub Actions with Dockerized Playwright runners to achieve lightning-fast ~1-minute execution times.
 3. **Validating AI Models:** Implementing robust, programmatic LLM testing to ensure the accuracy and groundedness of AI features before they reach production.
@@ -249,7 +249,7 @@ The following captures illustrate the framework executing across core stateful j
 
 | **1. Authentication State** | **2. Inventory Management** | **3. Stateful Checkout** |
 | :--- | :--- | :--- |
-| !Login | !Inventory | !Cart |
+| ![Login](screenshots/login.png) | ![Inventory](screenshots/inventory.png) | ![Cart](screenshots/cart.png) |
 | **Identity Layer:** Validates requirements across multiple persona matrices. | **Product Inventory:** Grid state management and visual discrepancy detection. | **Validation Funnel:** Real-time calculation of item parity and secure order finalization. |
 
 ---

@@ -101,10 +101,16 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-promptfoo-
     - name: Run LLM Tests
+      id: llm_test_run
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-      run: npm run test:llm
+      run: |
+        if [[ -n "${{ secrets.GROQ_API_KEY }}" ]]; then
+          npm run test:llm:groq
+        else
+          npm run test:llm:gemini
+        fi
     - name: Upload Promptfoo Report
       uses: actions/upload-artifact@v4
       if: always()
