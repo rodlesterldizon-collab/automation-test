@@ -63,7 +63,7 @@ test.describe('Authentication State & Visual Regression Matrix', () => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
     const inventoryPage = await loginPage.login(TEST_USERS.performanceGlitch, VALID_PASSWORD);
-    await inventoryPage.expectInventoryPage();
+    await inventoryPage.expectInventoryPage(); 
   });
 
   test('Error user should be able to log in successfully', async ({ page }) => {
