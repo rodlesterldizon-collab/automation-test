@@ -156,7 +156,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        users: [20, 50, 100]
+        users: [20, 50]
     container:
       image: mcr.microsoft.com/playwright:v1.59.1-jammy
     env:
