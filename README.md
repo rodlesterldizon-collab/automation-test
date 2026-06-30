@@ -11,7 +11,7 @@ This framework is focused on building infrastructure that accelerates delivery a
 1. **Eliminating Flakiness:** Implementing a strict "Defense-in-Depth" selector strategy and self-healing locators to eliminate CI/CD false positives.
 2. **Accelerating Pipelines:** Optimizing GitHub Actions with Dockerized Playwright runners to achieve lightning-fast ~1-minute execution times.
 3. **Validating AI Models:** Implementing robust, programmatic LLM testing to ensure the accuracy and groundedness of AI features before they reach production.
-4. **Performance & Load Testing:** Integrated JMeter via Taurus using a "Gatekeeper" pattern that gracefully flags infrastructure limits without breaking CI/CD pipelines.
+4. **Performance & Load Testing:** Integrated JMeter via Taurus using a "Gatekeeper" pattern that gracefully flags infrastructure limits without breaking CI/CD pipelines. Baseline stress tests run at 20 and 50 concurrent users.
 
 Created and maintained by **Rod Lester Dizon**. 
 
@@ -50,6 +50,8 @@ The pipeline is engineered for performance, achieving **~1-minute build times** 
 - **Workflow Dispatch Toggles:** Gives engineers manual control to conditionally trigger `api`, `ui`, or `all` suites directly from the GitHub UI, bypassing redundant runs.
 - **Binary Bypass:** Utilizes Microsoft’s `playwright:jammy` Docker image, eliminating the need for slow browser binary downloads during runtime.
 - **Environment Parity:** Dockerized runners ensure identical execution contexts across local, staging, and production-grade CI environments.
+
+![CI/CD Pipeline](screenshots/cicd.png)
 
 ## 🏗️ Architectural Governance & Selector Resiliency
 
@@ -453,11 +455,14 @@ During our baseline 20-user stress test, our suite successfully proved its value
 
 The framework's Gatekeeper safely logged the warnings and gracefully shut down the test without crashing the CI/CD pipeline. The automation works exactly as designed! The test didn't fail because the code is broken; it "failed" because the target server couldn't handle the traffic. The endpoints rate-limited your IP when 20 concurrent users started hammering it.
 
-### Where is the report stored locally?
-Every time you run Taurus via `npm run test:perf`, it automatically generates a brand-new timestamped artifact directory so your results are never overwritten. For a typical run, all your reports are saved here: 
-👉 `/Users/vimay/Documents/antigravity/automation-test/2026-06-30_17-18-18.655648/`
+### Performance Test Stats Reference
 
-If you open that folder, you will see a `stats.csv` (which contains the raw table data) and a `kpi.jtl` (the raw JMeter logs). Note: These local reports are automatically `gitignored` so your repository stays clean.
+The following screenshot shows a sample `stats.csv` output captured from a real run. Use this as a reference baseline when interpreting future CI/CD results:
+
+![Performance Stats](screenshots/stats.png)
+
+### Where is the report stored locally?
+Every time you run Taurus via `npm run test:perf`, it automatically generates a brand-new timestamped artifact directory so your results are never overwritten. The artifact directory contains a `stats.csv` (raw table data) and a `kpi.jtl` (raw JMeter logs). Note: These local reports are automatically `gitignored` so your repository stays clean.
 
 ### Where is the report stored in CI/CD?
 When this runs in GitHub Actions, the framework does two things:
