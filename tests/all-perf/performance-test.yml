@@ -60,6 +60,9 @@ scenarios:
             not: false
 
 reporting:
+- module: final-stats
+  summary: true
+  dump-csv: ${TAURUS_ARTIFACTS_DIR}/stats.csv
 - module: passfail
   criteria:
   - avg-rt > 500ms for 10s, continue as non-failing # WARNING (Non-breaking)
