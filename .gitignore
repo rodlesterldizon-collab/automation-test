@@ -19,3 +19,9 @@ report.html
 
 # Accessibility Reports
 tests/accessibility/reports/
+
+# Taurus / JMeter Performance Tests
+20*-*-*_*-*-*.*
+tests/all-perf/results/
+jmeter.log
+venv/
