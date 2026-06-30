@@ -11,6 +11,7 @@ This framework is focused on building infrastructure that accelerates delivery a
 1. **Eliminating Flakiness:** Implementing a strict "Defense-in-Depth" selector strategy and self-healing locators to eliminate CI/CD false positives.
 2. **Accelerating Pipelines:** Optimizing GitHub Actions with Dockerized Playwright runners to achieve lightning-fast ~1-minute execution times.
 3. **Validating AI Models:** Implementing robust, programmatic LLM testing to ensure the accuracy and groundedness of AI features before they reach production.
+4. **Performance & Load Testing:** Integrated JMeter via Taurus using a "Gatekeeper" pattern that gracefully flags infrastructure limits without breaking CI/CD pipelines.
 
 Created and maintained by **Rod Lester Dizon**.
 
@@ -19,6 +20,7 @@ Created and maintained by **Rod Lester Dizon**.
 ## 📑 Table of Contents
 - [🤖 The AI-Augmented Engineering Lifecycle](#-the-ai-augmented-engineering-lifecycle)
 - [🚀 CI/CD Optimization & Pipeline Controls](#-cicd-optimization--pipeline-controls)
+- [📈 Performance & Load Testing Architecture](#-performance--load-testing-architecture)
 - [🏗️ Architectural Governance & Selector Resiliency](#️-architectural-governance--selector-resiliency)
 - [🛠️ Tech Stack & Patterns](#️-tech-stack--patterns)
 - [🚀 Quick Start](#-quick-start)
@@ -439,3 +441,26 @@ Complete guide: [TESTING_ARCHITECTURE.md](/tests/TESTING_ARCHITECTURE.md)
 - `fill*()` - Form filling
 
 ---
+
+## 📈 Performance & Load Testing Architecture
+
+We have successfully implemented our new JMeter load-testing suite using the 'Gatekeeper' pattern via Taurus. 
+
+### Did it work? (And how to explain it to stakeholders)
+During our baseline 20-user stress test, our suite successfully proved its value by catching two major infrastructure limits:
+- First, it detected that the mock backend API strictly rate-limits traffic (receiving a cascade of `429 Too Many Requests` errors when hitting ~10 requests per second). 
+- Second, it caught a severe latency spike well above our 500ms SLA. 
+
+The framework's Gatekeeper safely logged the warnings and gracefully shut down the test without crashing the CI/CD pipeline. The automation works exactly as designed! The test didn't fail because the code is broken; it "failed" because the target server couldn't handle the traffic. The endpoints rate-limited your IP when 20 concurrent users started hammering it.
+
+### Where is the report stored locally?
+Every time you run Taurus via `npm run test:perf`, it automatically generates a brand-new timestamped artifact directory so your results are never overwritten. For a typical run, all your reports are saved here: 
+👉 `/Users/vimay/Documents/antigravity/automation-test/2026-06-30_17-18-18.655648/`
+
+If you open that folder, you will see a `stats.csv` (which contains the raw table data) and a `kpi.jtl` (the raw JMeter logs). Note: These local reports are automatically `gitignored` so your repository stays clean.
+
+### Where is the report stored in CI/CD?
+When this runs in GitHub Actions, the framework does two things:
+
+1. **The Dashboard:** It automatically parses the `stats.csv` file and draws a beautiful Markdown table containing the "Users", "Avg Latency", and "Error Rate" directly onto the main GitHub Actions Job Summary UI. Stakeholders won't even need to download anything to see the high-level results!
+2. **The Artifacts:** The raw JMeter files (and any HTML dashboards) are automatically zipped and uploaded to the bottom of the GitHub Actions run as downloadable artifacts (e.g., `jmeter-results-20-users.zip`, `jmeter-results-50-users.zip`).

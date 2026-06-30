@@ -9,7 +9,8 @@
     "test:api": "playwright test --project=api",
     "test:llm:groq": "promptfoo eval -c tests/api-llm/promptfooconfig.yaml -o report.html -j 1 --providers file://groqProvider.js",
     "test:llm:gemini": "promptfoo eval -c tests/api-llm/promptfooconfig.yaml -o report.html -j 1 --providers google:gemini-3.5-flash",
-    "test:a11y": "node scripts/run-a11y.mjs"
+    "test:a11y": "node scripts/run-a11y.mjs",
+    "test:perf": "source venv/bin/activate && bzt tests/all-perf/performance-test.yml -o execution.0.concurrency=${USERS:-20} -o modules.console.disable=true"
   },
   "keywords": [],
   "author": "",

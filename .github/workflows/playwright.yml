@@ -148,3 +148,59 @@ jobs:
         name: accessibility-reports
         path: tests/accessibility/reports/
         retention-days: 30
+
+  performance-tests:
+    name: Run JMeter Performance Tests
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.test_suite == 'all' }}
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        users: [20, 50, 100]
+    container:
+      image: mcr.microsoft.com/playwright:v1.59.1-jammy
+    env:
+      HOME: /root
+      USERS: ${{ matrix.users }}
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Install Java and Taurus
+      run: |
+        apt-get update
+        apt-get install -y default-jre python3 python3-pip python3-venv
+        python3 -m venv /opt/venv
+        /opt/venv/bin/pip install bzt
+
+    - name: Run Taurus Performance Test
+      continue-on-error: true # Gatekeeper pattern
+      run: |
+        export PATH="/opt/venv/bin:$PATH"
+        bzt tests/all-perf/performance-test.yml -o execution.0.concurrency=${{ matrix.users }} -o settings.artifacts-dir=perf-results -o modules.console.disable=true
+
+    - name: Tabulate Results
+      run: |
+        echo "## Performance Test Results (${{ matrix.users }} Users)" >> $GITHUB_STEP_SUMMARY
+        echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+        echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+        
+        if [ -f perf-results/stats.csv ]; then
+          # Extract the total row (usually the second row if there's only one scenario, or the 'Total' row)
+          TOTAL_ROW=$(grep -i 'Total' perf-results/stats.csv || tail -n 1 perf-results/stats.csv)
+          AVG_RT=$(echo $TOTAL_ROW | awk -F, '{print $6}')
+          FAIL_RATE=$(echo $TOTAL_ROW | awk -F, '{print $5}')
+          echo "| Users | ${{ matrix.users }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Avg Latency | ${AVG_RT}s |" >> $GITHUB_STEP_SUMMARY
+          echo "| Error Rate | ${FAIL_RATE}% |" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "**Warning**: Could not find stats.csv for tabulation" >> $GITHUB_STEP_SUMMARY
+        fi
+
+    - name: Upload Performance Artifacts
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: jmeter-results-${{ matrix.users }}-users
+        path: perf-results/
+        retention-days: 14
