@@ -177,7 +177,7 @@ jobs:
       continue-on-error: true # Gatekeeper pattern
       run: |
         export PATH="/opt/venv/bin:$PATH"
-        bzt tests/all-perf/performance-test.yml -o execution.0.concurrency=${{ matrix.users }} -o settings.artifacts-dir=perf-results -o modules.console.disable=true
+        bzt tests/all-perf/performance-test.yml -o execution.0.concurrency=${{ matrix.users }} -o settings.artifacts-dir=tests/all-perf/results -o modules.console.disable=true
 
     - name: Tabulate Results
       run: |
@@ -185,9 +185,9 @@ jobs:
         echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
         echo "|---|---|" >> $GITHUB_STEP_SUMMARY
         
-        if [ -f perf-results/stats.csv ]; then
+        if [ -f tests/all-perf/results/stats.csv ]; then
           # Extract the total row (usually the second row if there's only one scenario, or the 'Total' row)
-          TOTAL_ROW=$(grep -i 'Total' perf-results/stats.csv || tail -n 1 perf-results/stats.csv)
+          TOTAL_ROW=$(grep -i 'Total' tests/all-perf/results/stats.csv || tail -n 1 tests/all-perf/results/stats.csv)
           AVG_RT=$(echo $TOTAL_ROW | awk -F, '{print $6}')
           FAIL_RATE=$(echo $TOTAL_ROW | awk -F, '{print $5}')
           echo "| Users | ${{ matrix.users }} |" >> $GITHUB_STEP_SUMMARY
@@ -202,5 +202,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: jmeter-results-${{ matrix.users }}-users
-        path: perf-results/
+        path: tests/all-perf/results/
         retention-days: 14

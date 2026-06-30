@@ -22,7 +22,6 @@ tests/accessibility/reports/
 
 # Taurus / JMeter Performance Tests
 20*-*-*_*-*-*.*
-perf-results/
-perf-test-results/
+tests/all-perf/results/
 jmeter.log
 venv/

@@ -1,0 +1,13 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,success,bytes,grpThreads,allThreads,Latency,Hostname,Connect
+1782853179668,704,https://reqres.in/api/users?page=2,200,OK,api-load-test-ThreadStarter 1-1,true,3622,1,1,698,vimays-MacBook-Pro.local,646
+1782853180381,193,https://reqres.in/api/users,401,Unauthorized,api-load-test-ThreadStarter 1-1,false,2600,1,1,193,vimays-MacBook-Pro.local,0
+1782853180584,86,https://reqres.in/api/users?page=2,200,OK,api-load-test-ThreadStarter 1-2,true,3622,2,2,86,vimays-MacBook-Pro.local,56
+1782853180589,205,https://reqres.in/api/users/2,401,Unauthorized,api-load-test-ThreadStarter 1-1,false,2594,2,2,205,vimays-MacBook-Pro.local,0
+1782853180671,194,https://reqres.in/api/users,401,Unauthorized,api-load-test-ThreadStarter 1-2,false,2607,2,2,194,vimays-MacBook-Pro.local,0
+1782853180797,110,https://reqres.in/api/users/2,401,Unauthorized,api-load-test-ThreadStarter 1-1,false,2600,2,2,110,vimays-MacBook-Pro.local,0
+1782853180866,106,https://reqres.in/api/users/2,401,Unauthorized,api-load-test-ThreadStarter 1-2,false,2607,2,2,106,vimays-MacBook-Pro.local,0
+1782853180909,190,https://reqres.in/api/unknown,401,Unauthorized,api-load-test-ThreadStarter 1-1,false,2647,2,2,190,vimays-MacBook-Pro.local,0
+1782853180974,177,https://reqres.in/api/users/2,401,Unauthorized,api-load-test-ThreadStarter 1-2,false,2594,2,2,177,vimays-MacBook-Pro.local,0
+1782853181152,106,https://reqres.in/api/unknown,401,Unauthorized,api-load-test-ThreadStarter 1-2,false,2634,2,2,106,vimays-MacBook-Pro.local,0
+1782853181260,4507,https://dequeuniversity.com/demo/mars/,200,"Embedded resource download error:https://dequeuniversity.com/demo/mars/assets/demo-sites/mars/images/favicon.ico code:404 message:Not Found, https://dequeuniversity.com/demo/mars/conversion_async.js code:404 message:Not Found, ",api-load-test-ThreadStarter 1-2,false,5384597,2,2,1183,vimays-MacBook-Pro.local,1044
+1782853181101,4663,https://dequeuniversity.com/demo/mars/,200,"Embedded resource download error:https://dequeuniversity.com/demo/mars/assets/demo-sites/mars/images/favicon.ico code:404 message:Not Found, https://dequeuniversity.com/demo/mars/conversion_async.js code:404 message:Not Found, ",api-load-test-ThreadStarter 1-1,false,5384918,2,2,1340,vimays-MacBook-Pro.local,1203

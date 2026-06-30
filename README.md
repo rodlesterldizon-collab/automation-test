@@ -16,7 +16,7 @@ This framework is focused on building infrastructure that accelerates delivery a
 Created and maintained by **Rod Lester Dizon**. 
 
 ---
-
+ 
 ## 📑 Table of Contents
 - [🤖 The AI-Augmented Engineering Lifecycle](#-the-ai-augmented-engineering-lifecycle)
 - [🚀 CI/CD Optimization & Pipeline Controls](#-cicd-optimization--pipeline-controls)

@@ -1,0 +1,66 @@
+---
+execution:
+- concurrency: ${USERS}
+  hold-for: 1m
+  ramp-up: 30s
+  scenario: api-load-test
+modules:
+  jmeter:
+    version: 5.6.3
+reporting:
+- criteria:
+  - avg-rt > 500ms for 10s, continue as non-failing
+  - fail > 5% for 10s, continue as non-failing
+  module: passfail
+scenarios:
+  api-load-test:
+    requests:
+    - assert:
+      - contains:
+        - 200
+        not: false
+        subject: http-code
+      method: GET
+      url: https://reqres.in/api/users?page=2
+    - assert:
+      - contains:
+        - 201
+        not: false
+        subject: http-code
+      body: '{"name": "test_user", "job": "leader"}'
+      headers:
+        Content-Type: application/json
+      method: POST
+      url: https://reqres.in/api/users
+    - assert:
+      - contains:
+        - 200
+        not: false
+        subject: http-code
+      body: '{"name": "morpheus", "job": "zion resident"}'
+      headers:
+        Content-Type: application/json
+      method: PUT
+      url: https://reqres.in/api/users/2
+    - assert:
+      - contains:
+        - 204
+        not: false
+        subject: http-code
+      method: DELETE
+      url: https://reqres.in/api/users/2
+    - assert:
+      - contains:
+        - 200
+        not: false
+        subject: http-code
+      method: GET
+      url: https://reqres.in/api/unknown
+    - assert:
+      - contains:
+        - 200
+        not: false
+        subject: http-code
+      method: GET
+      url: https://dequeuniversity.com/demo/mars/
+
