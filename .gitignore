@@ -16,3 +16,6 @@ playwright/.cache/
 # Promptfoo & Environment
 .env
 report.html
+
+# Accessibility Reports
+tests/accessibility/reports/

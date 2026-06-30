@@ -118,3 +118,33 @@ jobs:
         name: promptfoo-report
         path: report.html
         retention-days: 30
+
+  accessibility-tests:
+    name: Run Accessibility Scans
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.test_suite == 'all' || inputs.test_suite == 'ui' }}
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.59.1-jammy
+    env:
+      HOME: /root
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Install Project Dependencies
+      run: npm ci
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+    - name: Run Accessibility Scans
+      continue-on-error: true
+      run: npx playwright test --project=accessibility
+      env:
+        URL_LIST: "https://atlas.gc.ca/toporama/en/index.html,https://www.google.it"
+    - name: Upload Accessibility Reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: accessibility-reports
+        path: tests/accessibility/reports/
+        retention-days: 30

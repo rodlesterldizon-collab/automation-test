@@ -36,6 +36,11 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
+      name: 'accessibility',
+      testMatch: /accessibility\/.*\.spec\.ts/,
+      timeout: 5 * 60 * 1000,
+    },
+    {
       name: 'api',
       testMatch: /.*api\/.*\.spec\.ts/,
       use: {

@@ -16,6 +16,17 @@ Created and maintained by **Rod Lester Dizon**.
 
 ---
 
+## 📑 Table of Contents
+- [🤖 The AI-Augmented Engineering Lifecycle](#-the-ai-augmented-engineering-lifecycle)
+- [🚀 CI/CD Optimization & Pipeline Controls](#-cicd-optimization--pipeline-controls)
+- [🏗️ Architectural Governance & Selector Resiliency](#️-architectural-governance--selector-resiliency)
+- [🛠️ Tech Stack & Patterns](#️-tech-stack--patterns)
+- [🚀 Quick Start](#-quick-start)
+- [🧠 LLM API Evaluation (Promptfoo)](#-llm-api-evaluation-promptfoo)
+- [♿ Automated Accessibility Audits (A11y)](#-automated-accessibility-audits-a11y)
+- [Git Workflow Reference](#git-workflow-reference)
+
+---
 ## 🤖 The AI-Augmented Engineering Lifecycle
 
 While I personally designed the core architecture, testing strategy, strict POM rules, and CI/CD logic, I utilized a multi-stage **Agentic Workflow using MCP (Model Context Protocol)** to rapidly scaffold the boilerplate. This demonstrates how Senior SDETs can orchestrate AI agents to achieve 10x engineering velocity on the SauceDemo UI.
@@ -115,6 +126,44 @@ To integrate Groq natively with Promptfoo's evaluation loop, I engineered a cust
 3. Run the evaluation: `npm run test:llm`
 3. Run the evaluation: `npm run test:llm:groq`
 4. The test evaluates the outputs and uses the Groq model itself as the "Judge" to grade its own answers based on an LLM rubric.
+
+---
+
+## ♿ Automated Accessibility Audits (A11y)
+
+This framework includes a dedicated accessibility module capable of dynamically scanning any URL using both the open-source **Axe-core** engine and **Google Lighthouse**. 
+
+> **⚠️ Open-Source Limitations Notice:** This implementation uses the free, open-source `@axe-core/playwright` package. While it perfectly detects statically verifiable WCAG violations, it lacks Deque's proprietary enterprise features. Complex interactive heuristics (like focus order tracking), automated manual review prompts, and Intelligent Guided Testing (IGT) require purchasing a commercial **Axe DevTools Pro** license.
+
+### How it works
+- **Dynamic Orchestration**: Instead of hardcoding URLs into specs, the module ingests a `URL_LIST` environment variable to dynamically generate parallel test suites on the fly.
+- **Non-Blocking CI**: Discovering accessibility violations does *not* fail the build (exit code 0). This prevents pipeline blockages while still surfacing critical reports.
+- **Multi-Engine Scanning**:
+  - `axe-core`: Identifies strict programmatic WCAG violations.
+  - `playwright-lighthouse`: Performs complete lab accessibility audits for both Mobile and Desktop viewports.
+
+### Running the Scans
+To execute the suite, simply run:
+```bash
+npm run test:a11y https://broken-workshop.dequelabs.com/
+```
+*(This single command automatically runs both Axe-Core and Google Lighthouse sequentially in the exact same container context).*
+
+### Reporting
+For every URL, the framework automatically generates artifacts in the `tests/accessibility/reports/` folder:
+1. **Axe Premium HTML Dashboard** (Stylized view highlighting affected nodes and failing DOM element selectors)
+2. **Axe Raw JSON Data**
+3. **Google Lighthouse HTML Reports** (Mobile & Desktop)
+
+#### Dashboard Examples
+
+**Axe-Core Custom Dashboard:**  
+![Axe Core Dashboard](screenshots/axe-core.png)
+
+**Lighthouse Mobile/Desktop Audit:**  
+![Lighthouse Audit](screenshots/lighthouse.png)
+
+For more detailed information, please read the [Accessibility Module Documentation](file:///Users/vimay/Documents/antigravity/automation-test/tests/accessibility/README.md).
 
 ---
 
