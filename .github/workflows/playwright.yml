@@ -140,7 +140,7 @@ jobs:
       continue-on-error: true
       run: npx playwright test --project=accessibility
       env:
-        URL_LIST: "https://atlas.gc.ca/toporama/en/index.html,https://www.google.it"
+        URL_LIST: "https://atlas.gc.ca/toporama/en/index.html,https://broken-workshop.dequelabs.com/"
     - name: Upload Accessibility Reports
       if: always()
       uses: actions/upload-artifact@v4
