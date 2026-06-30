@@ -13,7 +13,7 @@ This framework is focused on building infrastructure that accelerates delivery a
 3. **Validating AI Models:** Implementing robust, programmatic LLM testing to ensure the accuracy and groundedness of AI features before they reach production.
 4. **Performance & Load Testing:** Integrated JMeter via Taurus using a "Gatekeeper" pattern that gracefully flags infrastructure limits without breaking CI/CD pipelines.
 
-Created and maintained by **Rod Lester Dizon**.
+Created and maintained by **Rod Lester Dizon**. 
 
 ---
 
