@@ -1,0 +1,257 @@
+[2026-06-30 16:59:32,640 INFO root] Taurus CLI Tool v1.16.50
+[2026-06-30 16:59:32,641 DEBUG root] Build: 14856 Mon Apr 27 13:20:25 UTC 2026
+[2026-06-30 16:59:32,641 DEBUG root] Extended git info:  c7ec0eca Release 1.16.50
+[2026-06-30 16:59:32,641 DEBUG root] Command-line options: {'log': '/var/folders/rn/pk46xbsx7dv4l2dvdb330yjc0000gn/T/bzt_59n_blff.log', 'option': ['execution.0.concurrency=2', 'modules.console.disable=true', 'execution.0.hold-for=5s', 'execution.0.ramp-up=1s', 'settings.artifacts-dir=perf-test-results'], 'quiet': None, 'verbose': None, 'no_system_configs': None, 'aliases': []}
+[2026-06-30 16:59:32,641 DEBUG root] Python: CPython 3.9.6
+[2026-06-30 16:59:32,641 DEBUG root] OS: uname_result(system='Darwin', node='vimays-MacBook-Pro.local', release='25.5.0', version='Darwin Kernel Version 25.5.0: Mon Apr 27 20:31:18 PDT 2026; root:xnu-12377.121.6~2/RELEASE_X86_64', machine='x86_64')
+[2026-06-30 16:59:32,642 DEBUG root] Path to interpreter: /Users/vimay/Documents/antigravity/automation-test/venv/bin/python3
+[2026-06-30 16:59:32,642 DEBUG root] Path to packages: ['/Users/vimay/Documents/antigravity/automation-test/venv/bin', '/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip', '/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9', '/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload', '/Users/vimay/Documents/antigravity/automation-test/venv/lib/python3.9/site-packages', '/Users/vimay/Documents/antigravity/automation-test/venv/lib/python3.9/site-packages/setuptools/_vendor']
+[2026-06-30 16:59:32,642 DEBUG root] Default python: /Users/vimay/Documents/antigravity/automation-test/venv/bin/python
+[2026-06-30 16:59:32,642 DEBUG root] Default python3: /Users/vimay/Documents/antigravity/automation-test/venv/bin/python3
+[2026-06-30 16:59:32,642 DEBUG root] Using personal config: /Users/vimay/.bzt-rc
+[2026-06-30 16:59:32,642 INFO root] Starting with configs: ['/Users/vimay/.bzt-rc', 'tests/all-perf/performance-test.yml']
+[2026-06-30 16:59:32,642 INFO Engine] Configuring...
+[2026-06-30 16:59:32,668 DEBUG Engine] Base configs list: ['/Users/vimay/Documents/antigravity/automation-test/venv/lib/python3.9/site-packages/bzt/resources/10-base-config.yml']
+[2026-06-30 16:59:32,668 DEBUG Engine.Configuration] Configs: ['/Users/vimay/Documents/antigravity/automation-test/venv/lib/python3.9/site-packages/bzt/resources/10-base-config.yml']
+[2026-06-30 16:59:32,668 DEBUG Engine.Configuration] Reading /Users/vimay/Documents/antigravity/automation-test/venv/lib/python3.9/site-packages/bzt/resources/10-base-config.yml as YAML
+[2026-06-30 16:59:32,694 DEBUG Engine] User configs list: ['/Users/vimay/.bzt-rc', 'tests/all-perf/performance-test.yml']
+[2026-06-30 16:59:32,694 DEBUG Engine.Configuration] Configs: ['/Users/vimay/.bzt-rc', 'tests/all-perf/performance-test.yml']
+[2026-06-30 16:59:32,695 DEBUG Engine.Configuration] Reading /Users/vimay/.bzt-rc as YAML
+[2026-06-30 16:59:32,700 DEBUG Engine.Configuration] Reading tests/all-perf/performance-test.yml as YAML
+[2026-06-30 16:59:32,709 DEBUG Engine.Configuration] Configs: ['/Users/vimay/.bzt-rc', 'tests/all-perf/performance-test.yml']
+[2026-06-30 16:59:32,710 DEBUG Engine.Configuration] Reading /Users/vimay/.bzt-rc as YAML
+[2026-06-30 16:59:32,714 DEBUG Engine.Configuration] Reading tests/all-perf/performance-test.yml as YAML
+[2026-06-30 16:59:32,723 INFO HTTPClient] Proxy settings not set
+[2026-06-30 16:59:32,723 DEBUG Engine] Requesting updates info: https://gettaurus.org/updates/?version=1.16.50&installID=macos-5ee6cda38229
+[2026-06-30 16:59:32,723 DEBUG ConfigOverrider] Applying execution.0.concurrency=2
+[2026-06-30 16:59:32,724 DEBUG HTTPClient] Making HTTP request GET https://gettaurus.org/updates/?version=1.16.50&installID=macos-5ee6cda38229
+[2026-06-30 16:59:32,724 DEBUG ConfigOverrider] Applying: [concurrency]=2
+[2026-06-30 16:59:32,725 DEBUG ConfigOverrider] Parsed override value: '2' -> 2 (<class 'int'>)
+[2026-06-30 16:59:32,725 DEBUG ConfigOverrider] Applying modules.console.disable=true
+[2026-06-30 16:59:32,725 DEBUG ConfigOverrider] Applying: [disable]=true
+[2026-06-30 16:59:32,725 DEBUG ConfigOverrider] Parsed override value: 'true' -> True (<class 'bool'>)
+[2026-06-30 16:59:32,725 DEBUG ConfigOverrider] Applying execution.0.hold-for=5s
+[2026-06-30 16:59:32,725 DEBUG ConfigOverrider] Applying: [hold-for]=5s
+[2026-06-30 16:59:32,725 DEBUG ConfigOverrider] Parsed override value: '5s' -> '5s' (<class 'str'>)
+[2026-06-30 16:59:32,725 DEBUG ConfigOverrider] Applying execution.0.ramp-up=1s
+[2026-06-30 16:59:32,725 DEBUG ConfigOverrider] Applying: [ramp-up]=1s
+[2026-06-30 16:59:32,726 DEBUG ConfigOverrider] Parsed override value: '1s' -> '1s' (<class 'str'>)
+[2026-06-30 16:59:32,726 DEBUG ConfigOverrider] Applying settings.artifacts-dir=perf-test-results
+[2026-06-30 16:59:32,726 DEBUG ConfigOverrider] Applying: [artifacts-dir]=perf-test-results
+[2026-06-30 16:59:32,726 DEBUG ConfigOverrider] Parsed override value: 'perf-test-results' -> 'perf-test-results' (<class 'str'>)
+[2026-06-30 16:59:32,726 INFO Engine] Artifacts dir: /Users/vimay/Documents/antigravity/automation-test/perf-test-results
+[2026-06-30 16:59:32,726 DEBUG Engine] New artifact filename: /Users/vimay/Documents/antigravity/automation-test/perf-test-results/effective
+[2026-06-30 16:59:32,728 DEBUG Engine.Configuration] Dumping YAML config into /Users/vimay/Documents/antigravity/automation-test/perf-test-results/effective.yml
+[2026-06-30 16:59:32,749 DEBUG urllib3.connectionpool] Starting new HTTPS connection (1): gettaurus.org:443
+[2026-06-30 16:59:32,751 DEBUG Engine.Configuration] Dumping JSON config into /Users/vimay/Documents/antigravity/automation-test/perf-test-results/effective.json
+[2026-06-30 16:59:32,752 DEBUG Engine] New artifact filename: /Users/vimay/Documents/antigravity/automation-test/perf-test-results/merged-1.yml
+[2026-06-30 16:59:32,753 DEBUG Engine.Configuration] Dumping YAML config into /Users/vimay/Documents/antigravity/automation-test/perf-test-results/merged-1.yml
+[2026-06-30 16:59:32,758 DEBUG Engine] New artifact filename: /Users/vimay/Documents/antigravity/automation-test/perf-test-results/merged-1.json
+[2026-06-30 16:59:32,758 DEBUG Engine.Configuration] Dumping JSON config into /Users/vimay/Documents/antigravity/automation-test/perf-test-results/merged-1.json
+[2026-06-30 16:59:32,759 DEBUG Engine] Add existing artifact (move=False): /Users/vimay/.bzt-rc
+[2026-06-30 16:59:32,759 DEBUG Engine] Copying /Users/vimay/.bzt-rc to /Users/vimay/Documents/antigravity/automation-test/perf-test-results/.bzt-rc
+[2026-06-30 16:59:32,759 DEBUG Engine] Add existing artifact (move=False): tests/all-perf/performance-test.yml
+[2026-06-30 16:59:32,760 DEBUG Engine] Copying tests/all-perf/performance-test.yml to /Users/vimay/Documents/antigravity/automation-test/perf-test-results/performance-test.yml
+[2026-06-30 16:59:32,760 DEBUG Engine] Set PYTHONPATH to :
+	CURRENT: '' +
+	TEMP: '/Users/vimay/Documents/antigravity/automation-test/perf-test-results/python-packages/3.9.6' +
+	USER: '/Users/vimay/.bzt/python-packages/3.9.6'
+[2026-06-30 16:59:32,760 DEBUG Engine] Content of user packages dir: []
+[2026-06-30 16:59:32,761 DEBUG Engine] OS env: OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+[2026-06-30 16:59:32,761 DEBUG Engine] OS env: TAURUS_ARTIFACTS_DIR=/Users/vimay/Documents/antigravity/automation-test/perf-test-results
+[2026-06-30 16:59:32,761 DEBUG root] Closing log handler: /var/folders/rn/pk46xbsx7dv4l2dvdb330yjc0000gn/T/bzt_59n_blff.log
+[2026-06-30 16:59:32,762 DEBUG root] Switched writing logs to /Users/vimay/Documents/antigravity/automation-test/perf-test-results/bzt.log
+[2026-06-30 16:59:32,762 DEBUG root] Linting config
+[2026-06-30 16:59:32,764 INFO Engine] Preparing...
+[2026-06-30 16:59:32,765 DEBUG Engine] Module config: consolidator {'class': 'bzt.modules.aggregator.ConsolidatingAggregator'}
+[2026-06-30 16:59:32,765 DEBUG root] Importing module: bzt.modules.aggregator
+[2026-06-30 16:59:32,946 DEBUG root] Loading class: 'ConsolidatingAggregator' from <module 'bzt.modules.aggregator' from '/Users/vimay/Documents/antigravity/automation-test/venv/lib/python3.9/site-packages/bzt/modules/aggregator.py'>
+[2026-06-30 16:59:32,946 DEBUG Engine.consolidator] Buffer scaling setup: percentile 95.0 from [0.0, 50.0, 90.0, 95.0, 99.0, 99.9, 100.0] selected
+[2026-06-30 16:59:32,946 DEBUG Engine] Module config: monitoring {'class': 'bzt.modules.monitoring.Monitoring'}
+[2026-06-30 16:59:32,946 DEBUG root] Importing module: bzt.modules.monitoring
+[2026-06-30 16:59:32,949 DEBUG root] Loading class: 'Monitoring' from <module 'bzt.modules.monitoring' from '/Users/vimay/Documents/antigravity/automation-test/venv/lib/python3.9/site-packages/bzt/modules/monitoring.py'>
+[2026-06-30 16:59:32,949 WARNING Engine.monitoring.LocalClient.LocalMonitorFactory] Unable to detect cgroups version. File /etc/mtab not found
+[2026-06-30 16:59:32,949 INFO Engine.monitoring.LocalClient] Using StandardLocalMonitor for engine health monitoring
+[2026-06-30 16:59:32,949 DEBUG Engine] Module config: local {'class': 'bzt.modules.provisioning.Local'}
+[2026-06-30 16:59:32,949 DEBUG root] Importing module: bzt.modules.provisioning
+[2026-06-30 16:59:32,950 DEBUG root] Loading class: 'Local' from <module 'bzt.modules.provisioning' from '/Users/vimay/Documents/antigravity/automation-test/venv/lib/python3.9/site-packages/bzt/modules/provisioning.py'>
+[2026-06-30 16:59:32,950 DEBUG Engine] Module config: jmeter {'class': 'bzt.modules.jmeter.JMeterExecutor', 'protocol-handlers': {'http': 'bzt.jmx.http.HTTPProtocolHandler', 'mqtt': 'bzt.jmx.mqtt.MQTTProtocolHandler', 'grpc': 'bzt.jmx.grpc.GRPCProtocolHandler'}, 'plugins': ['jpgc-casutg', 'jpgc-dummy', 'jpgc-ffw', 'jpgc-fifo', 'jpgc-functions', 'jpgc-json', 'jpgc-perfmon', 'jpgc-prmctl', 'jpgc-tst'], 'properties': {'jmeter.save.saveservice.autoflush': 'true', 'jmeter.save.saveservice.connect_time': 'true', 'jmeterengine.force.system.exit': 'true', 'summariser.name': ''}, 'version': '5.6.3'}
+[2026-06-30 16:59:32,950 DEBUG root] Importing module: bzt.modules.jmeter
+[2026-06-30 16:59:32,963 DEBUG root] Loading class: 'JMeterExecutor' from <module 'bzt.modules.jmeter' from '/Users/vimay/Documents/antigravity/automation-test/venv/lib/python3.9/site-packages/bzt/modules/jmeter.py'>
+[2026-06-30 16:59:32,963 DEBUG Engine.local] Preparing executor: jmeter/4569449520
+[2026-06-30 16:59:32,964 DEBUG Engine] New artifact filename: /Users/vimay/Documents/antigravity/automation-test/perf-test-results/jmeter-1.log
+[2026-06-30 16:59:32,964 DEBUG Engine.jmeter] Checking if port 4445 is free
+[2026-06-30 16:59:32,964 DEBUG Engine.jmeter] Port 4445 is free
+[2026-06-30 16:59:32,964 DEBUG Engine.jmeter] Using port 4445 for management
+[2026-06-30 16:59:32,964 DEBUG Engine.jmeter] Getting Jmeter version.
+[2026-06-30 16:59:32,964 DEBUG Engine.jmeter] Autodetect version is enabled
+[2026-06-30 16:59:32,965 DEBUG Engine.jmeter] JMeter version: 5.6.3
+[2026-06-30 16:59:32,965 DEBUG Engine] New artifact filename: /Users/vimay/Documents/antigravity/automation-test/perf-test-results/requests-1.jmx
+[2026-06-30 16:59:32,965 DEBUG root] Importing module: bzt.jmx.http
+[2026-06-30 16:59:32,966 DEBUG root] Loading class: 'HTTPProtocolHandler' from <module 'bzt.jmx.http' from '/Users/vimay/Documents/antigravity/automation-test/venv/lib/python3.9/site-packages/bzt/jmx/http.py'>
+[2026-06-30 16:59:32,966 DEBUG root] Importing module: bzt.jmx.mqtt
+[2026-06-30 16:59:32,967 DEBUG root] Loading class: 'MQTTProtocolHandler' from <module 'bzt.jmx.mqtt' from '/Users/vimay/Documents/antigravity/automation-test/venv/lib/python3.9/site-packages/bzt/jmx/mqtt.py'>
+[2026-06-30 16:59:32,967 DEBUG root] Importing module: bzt.jmx.grpc
+[2026-06-30 16:59:32,968 DEBUG root] Loading class: 'GRPCProtocolHandler' from <module 'bzt.jmx.grpc' from '/Users/vimay/Documents/antigravity/automation-test/venv/lib/python3.9/site-packages/bzt/jmx/grpc.py'>
+[2026-06-30 16:59:32,971 DEBUG JMeterScenarioBuilder] Saving JMX to: /Users/vimay/Documents/antigravity/automation-test/perf-test-results/requests-1.jmx
+[2026-06-30 16:59:32,972 DEBUG Engine.jmeter] Additional system properties {'sun.net.inetaddr.ttl': 0}
+[2026-06-30 16:59:32,972 DEBUG Engine] New artifact filename: /Users/vimay/Documents/antigravity/automation-test/perf-test-results/system-1.properties
+[2026-06-30 16:59:32,972 DEBUG Engine.jmeter] Additional properties: {'jmeter.save.saveservice.autoflush': 'true', 'jmeter.save.saveservice.connect_time': 'true', 'jmeterengine.force.system.exit': 'true', 'summariser.name': '', 'jmeterengine.nongui.port': 4445, 'jmeterengine.nongui.maxport': 4445, 'jmeter.save.saveservice.timestamp_format': 'ms', 'sampleresult.default.encoding': 'UTF-8', 'user.classpath': '/Users/vimay/Documents/antigravity/automation-test/perf-test-results:/Users/vimay/Documents/antigravity/automation-test/perf-test-results'}
+[2026-06-30 16:59:32,972 DEBUG Engine] New artifact filename: /Users/vimay/Documents/antigravity/automation-test/perf-test-results/jmeter-bzt-1.properties
+[2026-06-30 16:59:32,973 DEBUG Engine.jmeter.JavaVM] Trying JavaVM: ['java', '-version']
+[2026-06-30 16:59:32,973 DEBUG root] Executing shell: ['java', '-version'] at .
+[2026-06-30 16:59:33,194 DEBUG Engine.jmeter.JavaVM] JavaVM output: openjdk version "26.0.1" 2026-04-21
+OpenJDK Runtime Environment Homebrew (build 26.0.1)
+OpenJDK 64-Bit Server VM Homebrew (build 26.0.1, mixed mode, sharing)
+
+[2026-06-30 16:59:33,194 DEBUG Engine.jmeter.TclLibrary] We don't need to check tcl library on this platform
+[2026-06-30 16:59:33,194 DEBUG Engine.jmeter.JMeter] Trying JMeter..
+[2026-06-30 16:59:33,195 DEBUG root] Executing shell: ['/Users/vimay/.bzt/jmeter-taurus/5.6.3/bin/jmeter.sh', '-j', '/var/folders/rn/pk46xbsx7dv4l2dvdb330yjc0000gn/T/jmeterlq9e__9xlog', '--version'] at .
+[2026-06-30 16:59:34,611 DEBUG Engine.jmeter.JMeter] JMeter check: WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+    _    ____   _    ____ _   _ _____       _ __  __ _____ _____ _____ ____
+   / \  |  _ \ / \  / ___| | | | ____|     | |  \/  | ____|_   _| ____|  _ \
+  / _ \ | |_) / _ \| |   | |_| |  _|    _  | | |\/| |  _|   | | |  _| | |_) |
+ / ___ \|  __/ ___ \ |___|  _  | |___  | |_| | |  | | |___  | | | |___|  _ <
+/_/   \_\_| /_/   \_\____|_| |_|_____|  \___/|_|  |_|_____| |_| |_____|_| \_\ 5.6.3
+
+Copyright (c) 1999-2024 The Apache Software Foundation
+
+ / WARNING: package sun.awt.X11 not in java.desktop
+
+[2026-06-30 16:59:34,613 DEBUG Engine] New artifact filename: /Users/vimay/Documents/antigravity/automation-test/perf-test-results/kpi-1.jtl
+[2026-06-30 16:59:34,613 DEBUG Engine] New artifact filename: /Users/vimay/Documents/antigravity/automation-test/perf-test-results/error-1.jtl
+[2026-06-30 16:59:34,614 DEBUG Engine.jmeter.LoadSettingsProcessor] Load: LoadSpec(concurrency=2, throughput=None, ramp_up=1.0, hold=5.0, iterations=0, duration=6.0, steps=None)
+[2026-06-30 16:59:34,616 DEBUG Engine.jmeter.LoadSettingsProcessor.ThreadGroupHandler] Converting ThreadGroup (api-load-test) to ConcurrencyThreadGroup and apply load parameters
+[2026-06-30 16:59:34,617 DEBUG Engine] New artifact filename: /Users/vimay/Documents/antigravity/automation-test/perf-test-results/modified_requests-1.jmx
+[2026-06-30 16:59:34,617 DEBUG JMX] Saving JMX to: /Users/vimay/Documents/antigravity/automation-test/perf-test-results/modified_requests-1.jmx
+[2026-06-30 16:59:34,618 DEBUG root] Executing shell: ['/Users/vimay/.bzt/jmeter-taurus/5.6.3/bin/PluginsManagerCMD.sh', 'install-for-jmx', '/Users/vimay/Documents/antigravity/automation-test/perf-test-results/modified_requests-1.jmx'] at .
+[2026-06-30 16:59:37,078 DEBUG Engine.jmeter.JMeter] Try to detect plugins for /Users/vimay/Documents/antigravity/automation-test/perf-test-results/modified_requests-1.jmx
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+2026-06-30 16:59:35,603 INFO o.j.r.PluginManagerCMD: Command is: install-for-jmx
+2026-06-30 16:59:35,694 INFO o.j.r.JARSourceHTTP: Found cached repo
+2026-06-30 16:59:36,091 INFO o.j.r.PluginManager: Plugins Status: [jpgc-functions=2.2, jpgc-casutg=3.1.1, jpgc-dummy=0.4, jpgc-ffw=2.0, jpgc-fifo=0.2, jpgc-json=2.7, jpgc-prmctl=0.4, jpgc-perfmon=2.1, jpgc-plugins-manager=1.11, jpgc-tst=2.6, jmeter-core=5.6.3, jmeter-ftp=5.6.3, jmeter-http=5.6.3, jmeter-jdbc=5.6.3, jmeter-jms=5.6.3, jmeter-junit=5.6.3, jmeter-java=5.6.3, jmeter-ldap=5.6.3, jmeter-mail=5.6.3, jmeter-mongodb=5.6.3, jmeter-native=5.6.3, jmeter-tcp=5.6.3, jmeter-components=5.6.3]
+2026-06-30 16:59:36,094 INFO o.j.r.PluginManagerCMD: Params line is: /Users/vimay/Documents/antigravity/automation-test/perf-test-results/modified_requests-1.jmx
+2026-06-30 16:59:36,531 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2026-06-30 16:59:36,551 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2026-06-30 16:59:36,555 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2026-06-30 16:59:36,614 INFO o.a.j.p.h.c.CacheManager: Will only cache the following methods: [GET]
+2026-06-30 16:59:36,617 INFO o.a.j.p.h.c.CookieManager: Settings: Delete null: true Check: true Allow variable: true Save: false Prefix: COOKIE_
+2026-06-30 16:59:36,645 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-06-30 16:59:36,646 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-06-30 16:59:36,646 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-06-30 16:59:36,646 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-06-30 16:59:36,646 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2026-06-30 16:59:36,646 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2026-06-30 16:59:36,748 INFO o.j.r.PluginManager: Finishing without changes
+
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.thoughtworks.xstream.converters.reflection.SunUnsafeReflectionProvider (file:/Users/vimay/.bzt/jmeter-taurus/5.6.3/lib/xstream-1.4.20.jar)
+WARNING: Please consider reporting this to the maintainers of class com.thoughtworks.xstream.converters.reflection.SunUnsafeReflectionProvider
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+
+[2026-06-30 16:59:37,079 DEBUG Engine] New artifact filename: /Users/vimay/Documents/antigravity/automation-test/perf-test-results/jmeter-1.out
+[2026-06-30 16:59:37,079 DEBUG Engine] New artifact filename: /Users/vimay/Documents/antigravity/automation-test/perf-test-results/jmeter-1.err
+[2026-06-30 16:59:37,080 DEBUG Engine] Module config: final-stats {'class': 'bzt.modules.reporting.FinalStatus'}
+[2026-06-30 16:59:37,080 DEBUG root] Importing module: bzt.modules.reporting
+[2026-06-30 16:59:37,106 DEBUG pyvirtualdisplay] version=3.0
+[2026-06-30 16:59:37,109 DEBUG root] Loading class: 'FinalStatus' from <module 'bzt.modules.reporting' from '/Users/vimay/Documents/antigravity/automation-test/venv/lib/python3.9/site-packages/bzt/modules/reporting.py'>
+[2026-06-30 16:59:37,109 DEBUG Engine] Module config: console {'class': 'bzt.modules.console.ConsoleStatusReporter', 'disable': True}
+[2026-06-30 16:59:37,109 DEBUG root] Importing module: bzt.modules.console
+[2026-06-30 16:59:37,109 DEBUG root] Loading class: 'ConsoleStatusReporter' from <module 'bzt.modules.console' from '/Users/vimay/Documents/antigravity/automation-test/venv/lib/python3.9/site-packages/bzt/modules/console.py'>
+[2026-06-30 16:59:37,110 DEBUG Engine] Module config: passfail {'class': 'bzt.modules.passfail.PassFailStatus'}
+[2026-06-30 16:59:37,110 DEBUG root] Importing module: bzt.modules.passfail
+[2026-06-30 16:59:37,110 DEBUG root] Loading class: 'PassFailStatus' from <module 'bzt.modules.passfail' from '/Users/vimay/Documents/antigravity/automation-test/venv/lib/python3.9/site-packages/bzt/modules/passfail.py'>
+[2026-06-30 16:59:37,111 DEBUG root] Importing module: bzt.modules.passfail
+[2026-06-30 16:59:37,111 DEBUG root] Loading class: 'DataCriterion' from <module 'bzt.modules.passfail' from '/Users/vimay/Documents/antigravity/automation-test/venv/lib/python3.9/site-packages/bzt/modules/passfail.py'>
+[2026-06-30 16:59:37,111 DEBUG root] Importing module: bzt.modules.passfail
+[2026-06-30 16:59:37,111 DEBUG root] Loading class: 'DataCriterion' from <module 'bzt.modules.passfail' from '/Users/vimay/Documents/antigravity/automation-test/venv/lib/python3.9/site-packages/bzt/modules/passfail.py'>
+[2026-06-30 16:59:37,113 DEBUG Engine.Configuration] Dumping YAML config into /Users/vimay/Documents/antigravity/automation-test/perf-test-results/effective.yml
+[2026-06-30 16:59:37,136 DEBUG Engine.Configuration] Dumping JSON config into /Users/vimay/Documents/antigravity/automation-test/perf-test-results/effective.json
+[2026-06-30 16:59:37,137 INFO Engine] Starting...
+[2026-06-30 16:59:37,137 DEBUG Engine] Startup <bzt.modules.monitoring.Monitoring object at 0x1105c47c0>
+[2026-06-30 16:59:37,138 DEBUG Engine] Startup <bzt.modules.aggregator.ConsolidatingAggregator object at 0x1105c4730>
+[2026-06-30 16:59:37,138 DEBUG Engine] Startup <bzt.modules.reporting.FinalStatus object at 0x1111f7f10>
+[2026-06-30 16:59:37,138 DEBUG Engine] Startup <bzt.modules.console.ConsoleStatusReporter object at 0x1111f7c10>
+[2026-06-30 16:59:37,138 INFO Engine.console] Waiting for results...
+[2026-06-30 16:59:37,138 DEBUG Engine] Startup <bzt.modules.passfail.PassFailStatus object at 0x111284b80>
+[2026-06-30 16:59:37,138 DEBUG Engine] Startup <bzt.modules.provisioning.Local object at 0x11007e490>
+[2026-06-30 16:59:37,138 DEBUG Engine.local] Delay setup for jmeter/api-load-test: 0(start-at) + 0(delay) = 0
+[2026-06-30 16:59:37,140 DEBUG Engine.Configuration] Dumping YAML config into /Users/vimay/Documents/antigravity/automation-test/perf-test-results/effective.yml
+[2026-06-30 16:59:37,163 DEBUG Engine.Configuration] Dumping JSON config into /Users/vimay/Documents/antigravity/automation-test/perf-test-results/effective.json
+[2026-06-30 16:59:37,164 DEBUG root] Leveling down log file verbosity to INFO, use -v option to have DEBUG messages enabled
+[2026-06-30 16:59:37,164 DEBUG root] Leveled up log file verbosity
+[2026-06-30 16:59:37,164 DEBUG Engine] New artifact filename: /Users/vimay/Documents/antigravity/automation-test/perf-test-results/GRACEFUL
+[2026-06-30 16:59:37,165 DEBUG root] Executing shell: ['/Users/vimay/.bzt/jmeter-taurus/5.6.3/bin/jmeter.sh', '-t', '/Users/vimay/Documents/antigravity/automation-test/perf-test-results/modified_requests-1.jmx', '-j', '/Users/vimay/Documents/antigravity/automation-test/perf-test-results/jmeter-1.log', '-q', '/Users/vimay/Documents/antigravity/automation-test/perf-test-results/jmeter-bzt-1.properties', '-n', '-S', '/Users/vimay/Documents/antigravity/automation-test/perf-test-results/system-1.properties'] at /Users/vimay/Documents/antigravity/automation-test
+[2026-06-30 16:59:37,172 DEBUG Engine.local] Starting execution: jmeter/api-load-test, rest of available slots: 9223372036854775806
+[2026-06-30 16:59:37,173 DEBUG root] Leveling down log file verbosity to INFO, use -v option to have DEBUG messages enabled
+[2026-06-30 16:59:38,040 WARNING Engine] Failed to check for updates, server returned 5xx.
+[2026-06-30 16:59:47,216 WARNING Engine] Please wait for graceful shutdown...
+[2026-06-30 16:59:47,217 DEBUG root] Leveled up log file verbosity
+[2026-06-30 16:59:47,217 INFO Engine] Shutting down...
+[2026-06-30 16:59:47,217 DEBUG Engine] Current stop reason: None
+[2026-06-30 16:59:47,218 DEBUG Engine.local] Shutdown jmeter/api-load-test
+[2026-06-30 16:59:47,220 DEBUG Engine.Configuration] Dumping YAML config into /Users/vimay/Documents/antigravity/automation-test/perf-test-results/effective.yml
+[2026-06-30 16:59:47,244 DEBUG Engine.Configuration] Dumping JSON config into /Users/vimay/Documents/antigravity/automation-test/perf-test-results/effective.json
+[2026-06-30 16:59:47,245 INFO Engine] Post-processing...
+[2026-06-30 16:59:47,245 DEBUG Engine.local] Post-process jmeter/api-load-test
+[2026-06-30 16:59:47,246 DEBUG Engine] Add existing artifact (move=True): /Users/vimay/Documents/antigravity/automation-test/perf-test-results/modified_requests-1.jmx
+[2026-06-30 16:59:47,246 DEBUG Engine] No need to copy /Users/vimay/Documents/antigravity/automation-test/perf-test-results/modified_requests-1.jmx
+[2026-06-30 16:59:47,246 DEBUG Engine.jmeter.JTLReader] Buffer len: 2; Known errors count: 2
+[2026-06-30 16:59:47,246 DEBUG Engine.jmeter.JTLReader] Aggregating: 1782853180, 2 in buffer
+[2026-06-30 16:59:47,248 DEBUG Engine.jmeter.JTLErrorsReader] Got error info for 1782853180, labels: dict_keys(['https://reqres.in/api/users', '', 'https://reqres.in/api/users/2', 'https://reqres.in/api/unknown'])
+[2026-06-30 16:59:47,250 DEBUG Engine.jmeter.JTLReader] Aggregating: 1782853181, 1 in buffer
+[2026-06-30 16:59:47,251 DEBUG Engine.jmeter.JTLErrorsReader] Got error info for 1782853181, labels: dict_keys(['https://dequeuniversity.com/demo/mars/', '', 'https://reqres.in/api/unknown'])
+[2026-06-30 16:59:47,253 DEBUG Engine.jmeter.JTLReader] Buffer len: 0; Known errors count: 2
+[2026-06-30 16:59:47,253 DEBUG Engine.consolidator] Consolidator buffer[3]: dict_keys([1782853179, 1782853180, 1782853181])
+[2026-06-30 16:59:47,253 DEBUG Engine.consolidator] Merging into 1782853179
+[2026-06-30 16:59:47,253 DEBUG Engine.consolidator] Bypassing consolidation because of single result
+[2026-06-30 16:59:47,254 DEBUG Engine.passfail] 1782853179 Alert: avg-rt>500ms for 1 sec: True
+[2026-06-30 16:59:47,254 DEBUG Engine.passfail] 1782853179 Alert: fail>5% for -9223372036854775806 sec: False
+[2026-06-30 16:59:47,254 DEBUG Engine.consolidator] Processed datapoint: 1782853179/ConsolidatingAggregator@4569450288
+[2026-06-30 16:59:47,254 DEBUG Engine.consolidator] Merging into 1782853180
+[2026-06-30 16:59:47,254 DEBUG Engine.consolidator] Bypassing consolidation because of single result
+[2026-06-30 16:59:47,256 DEBUG Engine.passfail] 1782853180 Alert: avg-rt>500ms for -9223372036854775806 sec: False
+[2026-06-30 16:59:47,256 DEBUG Engine.passfail] 1782853180 Alert: fail>5% for 1 sec: True
+[2026-06-30 16:59:47,256 DEBUG Engine.consolidator] Processed datapoint: 1782853180/ConsolidatingAggregator@4569450288
+[2026-06-30 16:59:47,256 DEBUG Engine.consolidator] Merging into 1782853181
+[2026-06-30 16:59:47,256 DEBUG Engine.consolidator] Bypassing consolidation because of single result
+[2026-06-30 16:59:47,258 DEBUG Engine.passfail] 1782853181 Alert: avg-rt>500ms for 1 sec: True
+[2026-06-30 16:59:47,258 DEBUG Engine.passfail] 1782853181 Alert: fail>5% for 2 sec: True
+[2026-06-30 16:59:47,258 DEBUG Engine.consolidator] Processed datapoint: 1782853181/ConsolidatingAggregator@4569450288
+[2026-06-30 16:59:47,258 INFO Engine.final-stats] Test duration: 0:00:10
+[2026-06-30 16:59:47,258 INFO Engine.final-stats] Samples count: 12, 83.33% failures
+[2026-06-30 16:59:47,258 INFO Engine.final-stats] Average times: total 0.937, latency 0.382, connect 0.246
+[2026-06-30 16:59:47,283 INFO Engine.final-stats] Percentiles:
++---------------+---------------+
+| Percentile, % | Resp. Time, s |
++---------------+---------------+
+|           0.0 |         0.086 |
+|          50.0 |          0.19 |
+|          90.0 |         4.504 |
+|          95.0 |          4.66 |
+|          99.0 |          4.66 |
+|          99.9 |          4.66 |
+|         100.0 |          4.66 |
++---------------+---------------+
+[2026-06-30 16:59:47,284 INFO Engine.final-stats] Request label stats:
++----------------------------------------+--------+---------+--------+--------------+
+| label                                  | status |    succ | avg_rt | error        |
++----------------------------------------+--------+---------+--------+--------------+
+| https://dequeuniversity.com/demo/mars/ |  FAIL  |   0.00% |  4.585 | Not Found    |
+| https://reqres.in/api/unknown          |  FAIL  |   0.00% |  0.148 | Unauthorized |
+| https://reqres.in/api/users            |  FAIL  |   0.00% |  0.194 | Unauthorized |
+| https://reqres.in/api/users/2          |  FAIL  |   0.00% |  0.149 | Unauthorized |
+| https://reqres.in/api/users?page=2     |   OK   | 100.00% |  0.395 |              |
++----------------------------------------+--------+---------+--------+--------------+
+[2026-06-30 16:59:47,284 DEBUG Engine.console] No logger_handler or orig_stream was detected
+[2026-06-30 16:59:47,286 DEBUG Engine.Configuration] Dumping YAML config into /Users/vimay/Documents/antigravity/automation-test/perf-test-results/effective.yml
+[2026-06-30 16:59:47,309 DEBUG Engine.Configuration] Dumping JSON config into /Users/vimay/Documents/antigravity/automation-test/perf-test-results/effective.json
+[2026-06-30 16:59:47,310 INFO root] Artifacts dir: /Users/vimay/Documents/antigravity/automation-test/perf-test-results
+[2026-06-30 16:59:47,310 INFO root] Done performing with code: 0
+[2026-06-30 16:59:47,310 DEBUG root] Closing log handler: /Users/vimay/Documents/antigravity/automation-test/perf-test-results/bzt.log

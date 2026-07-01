@@ -8,7 +8,7 @@
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![JMeter](https://img.shields.io/badge/JMeter-D22128?style=for-the-badge&logo=apachejmeter&logoColor=white)
 
-> **Built by Rod Lester Dizon — Senior SDET**
+> **Built by Rod Lester Dizon**
 >
 > This repository is a **production-grade automation infrastructure showcase** — not a toy project. It demonstrates the full breadth of a senior SDET's engineering scope: multi-layer test architecture (UI, API, LLM, Accessibility, Performance), a self-optimizing CI/CD pipeline, and an AI-augmented engineering workflow using Model Context Protocol (MCP) agents. Public demo targets (SauceDemo, ReqRes, Deque) are used intentionally — they provide a stable, observable surface to demonstrate architectural patterns that transfer directly to enterprise systems.
 
