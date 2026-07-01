@@ -1,9 +1,0 @@
-WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
-WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
-WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
-WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
-Created the tree successfully using /Users/vimay/Documents/antigravity/automation-test/perf-test-results/modified_requests.jmx
-Starting standalone test @ 2026 Jun 30 16:52:33 GMT-04:00 (1782852753757)
-Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
-Tidying up ...    @ 2026 Jun 30 16:52:34 GMT-04:00 (1782852754222)
-... end of run
